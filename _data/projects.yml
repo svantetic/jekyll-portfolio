@@ -1,22 +1,76 @@
-- name: react simple speed dial
-  description: chrome extension written in react
-  categories:
-    - react
-    - redux
-    - learning
-  image: 
-  url: https://github.com/svantetic/react-simple-speed-dial/tree/master
-- name: techgarden map
-  description: job interview project. visualising position of cars on a map and provide filter and clustering options
-  categories:
-    - google maps api
-    - vue
+- branch: javascript
+  projects:
+  - name: react simple speed dial
+    description: chrome extension written in react
+    tags:
+      - react
+      - redux
+      - learning
+    image: 
+    url: https://github.com/svantetic/react-simple-speed-dial/tree/master
+  - name: techgarden map
+    description: job interview project. visualising position of cars on a map and provide filter and clustering options
+    tags:
+      - google maps api
+      - vue
     image: 
     url: https://github.com/svantetic/techgarden-map
-- name: venture todo
-  description: another job interview project. simple todo list written in react / redux
-  categories:
-    - react
-    - redux
-  image:
-  url: https://github.com/svantetic/venture-todo
+  - name: venture todo
+    description: another job interview project. simple todo list written in react / redux
+    tags:
+      - react
+      - redux
+    image:
+    url: https://github.com/svantetic/venture-todo
+  - name: react shopping cart
+    description: shopping cart written in react, just to get a grasp of react/redux
+    tags:
+      - react
+      - redux
+    image:
+    url: https://svantetic.github.io/react-shopping-cart/
+  - name: vue todo
+    description: yet another todo app, this time using localStorage
+    tags:
+      - vue
+    image:
+    url: http://svantetic.github.io/vuejs-todo
+  - name: vanilla snake
+    description: simple snake game written in es6 and canvas
+    tags:
+      - es6
+      - canvas
+    image:
+    url: https://github.com/svantetic/vanilla-snake
+- branch: websites
+  projects:
+  - name: QueenArt
+    description: designed from scratch and implemented to wp
+    tags:
+      - wordpress
+      - design
+    url: http://queen-art.pl/
+    image:
+  - name: 6minded
+    description: static company's webpage with vuejs scripts
+    tags:
+      - vue
+    url: http://6minded.com/
+    image:
+- branch: work
+  projects:
+  - name: sodium v2 pack
+    description: created this pack of hubspot templates as a part of Clickray team
+    tags:
+      - hubspot
+      - scss
+    image:
+    url: https://marketplace.hubspot.com/products/clickray-eu/turbo-sodium-v2
+  - name: hubspot template customizer
+    description: vuejs app for customizing hubspot templates
+    tags:
+      - vue
+    image:
+    url: http://customizer.clickray.eu/
+- branch: stuff
+  projects:

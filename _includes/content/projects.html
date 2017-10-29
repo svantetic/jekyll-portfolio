@@ -1,0 +1,28 @@
+<section class="section section--projects">
+  <div class="container">
+    <h2 class="section__heading">
+      Projects
+    </h2>
+    <div class="projects__grid">
+      {% for project in site.data.projects %}
+      <div class="project__branch">
+        <h3 class="project__category">
+          {{ project.branch }}
+        </h3>
+        {% for singleProject in project.projects %}
+        <div class="project">
+          <img src="{{ singleProject.image }}" alt="{{ singleProject.name }} image" class="project__image">
+          <h4 class="project__name">
+            {{ singleProject.name }}
+          </h4>
+          <p class="project__description">
+            {{ singleProject.description}}
+          </p>
+          <a class="project__link" href="{{ singleProject.url }}">{{ singleProject.url }}</a>
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
