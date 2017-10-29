@@ -1,5 +1,19 @@
 <div class="column section__education">
   <h2 class="section__heading">
-    Education
+    Edu
   </h2>
+  <table class="table table--education">
+      <tr>
+        <th>when</th>
+        <th>where</th>
+        <th>who</th>
+      </tr>
+      {% for edu in site.data.education %}
+        <tr>
+          <td>{{ edu.when }}</td>
+          <td>{{ edu.where }}</td>
+          <td>{{ edu.who }}</td>
+        </tr>
+      {% endfor %}
+    </table>
 </div>

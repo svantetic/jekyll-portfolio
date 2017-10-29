@@ -1,0 +1,38 @@
+skills:
+  - category: languages
+    names:
+      - name: english
+        commercial: true
+      - name: html5
+        commercial: true
+      - name: scss
+        commercial: true
+      - name: javascript
+        commercial: true
+      - name: php
+      - name: java
+      - name: sql
+  - category: frameworks / libs
+    names: 
+      - name: vue
+        commercial: true
+      - name: react / redux
+      - name: react-native
+        commercial: true
+      - name: laravel
+      - name: node / express
+      - name: jquery
+        commercial: true
+  - category: other
+    names: 
+      - name: HubSpot
+        commercial: true
+      - name: jekyll
+      - name: jade / pug
+      - name: stylus
+      - name: webpack
+        commercial: true
+      - name: gulp
+        commercial: true
+      - name: photoshop
+        commercial: true

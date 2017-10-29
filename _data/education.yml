@@ -1,0 +1,6 @@
+- when: now
+  where: Pedagogical University of Cracow	
+  who: Computer Science
+- when: 2009 - 2013	
+  where: Technical High School in Rabka Zdroj	
+  who: Computer Science

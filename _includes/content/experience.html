@@ -1,6 +1,19 @@
 <div class="column section__experience">
   <h2 class="section__heading">
-    Experience
+    EXP
   </h2>
-  
+  <table class="table table--experience">
+    <tr>
+      <th>when</th>
+      <th>where</th>
+      <th>who</th>
+    </tr>
+    {% for job in site.data.experience %}
+      <tr>
+        <td>{{ job.when }}</td>
+        <td>{{ job.where }}</td>
+        <td>{{ job.who }}</td>
+      </tr>
+    {% endfor %}
+  </table>
 </div>
