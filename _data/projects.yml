@@ -1,0 +1,22 @@
+- name: react simple speed dial
+  description: chrome extension written in react
+  categories:
+    - react
+    - redux
+    - learning
+  image: 
+  url: https://github.com/svantetic/react-simple-speed-dial/tree/master
+- name: techgarden map
+  description: job interview project. visualising position of cars on a map and provide filter and clustering options
+  categories:
+    - google maps api
+    - vue
+    image: 
+    url: https://github.com/svantetic/techgarden-map
+- name: venture todo
+  description: another job interview project. simple todo list written in react / redux
+  categories:
+    - react
+    - redux
+  image:
+  url: https://github.com/svantetic/venture-todo
