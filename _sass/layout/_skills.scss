@@ -1,0 +1,24 @@
+.skill {
+  text-align: center;
+  &__name {
+    margin: 0;
+  }
+  &__category {
+    margin-bottom: 30px;
+    color: white;
+  }
+
+  &__list {
+    margin-bottom: 50px;
+  }
+}
+
+.section {
+  &--skills {
+    color: white;    
+    background: $main-color;
+    .section__heading {
+      color: white;
+    }
+  }
+}

@@ -4,21 +4,24 @@
   <h2 class="section__heading">
     Skills
   </h2>
+  <div class="columns">
   {% for skill in site.data.skills.skills %}
-    <div class="column skill">
-      <h3 class="skill__category">
-        {{ skill.category }}
-      </h3>
-      <ul class="skill__list">
-        {% for skill in skill.names %}
-        <li class="skill__element">
-          <p class="skill__name {% if skill.commercial == true %} skill__name--experiened {% endif %} ">
-            {{ skill.name }}
-          </p>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endfor %}
+    
+      <div class="column skill">
+        <h3 class="skill__category">
+          {{ skill.category }}
+        </h3>
+        <ul class="skill__list">
+          {% for skill in skill.names %}
+          <li class="skill__element">
+            <p class="skill__name {% if skill.commercial == true %} skill__name--experiened {% endif %} ">
+              {{ skill.name }}
+            </p>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
   </div>
 </section>

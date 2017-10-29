@@ -1,0 +1,30 @@
+.social-link__list {
+  display: flex;
+}
+
+.social-link__element {
+  margin-right: 15px;
+}
+
+.navigation {
+  padding: 1rem;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__list {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(white, .9);
+    text-align: center;
+    display: none;    
+    justify-content: space-around;
+    flex-direction: column;
+    right: 0;
+    bottom: 0;
+    color: rgba(black, .9);
+    font-size: 1.4rem;
+  }
+}

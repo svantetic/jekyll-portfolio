@@ -1,25 +1,29 @@
 <section class="section section--about-me" id="about-me">
   <div class="container">
     <div class="row">
-      <div class="column section__qa">
-        <h2 class="section__heading">
-          Q&A
-        </h2>
-        <dl class="about-me__text">
-          <dt>Who am I?</dt>
-          <dd>Front end dev with 2 years of commercial experience</dd>
-          <dt>What tools do I use?</dt>
-          <dd>Almost entire Javascript toolkit, SASS, Jekyll and stuff</dd>
-          <dt>What am I learning right now?</dt>
-          <dd>Laravel, React Native, Test Driven Development</dd>
-          <dt>What do I do in free time?</dt>
-          <dd>Lots of reading, games and music production</dd>
-          <dt>What else?</dt>
-          <dd>Just scroll down</dd>
-        </dl>
+      <div class="columns">
+        <div class="column section__qa">
+          <h2 class="section__heading">
+            Q&A
+          </h2>
+          <dl class="about-me__text">
+            <dt>Who am I?</dt>
+            <dd>Front end dev with 2 years of commercial experience</dd>
+            <dt>What tools do I use?</dt>
+            <dd>Almost entire Javascript toolkit, SASS, Jekyll and stuff</dd>
+            <dt>What am I learning right now?</dt>
+            <dd>Laravel, React Native, Test Driven Development</dd>
+            <dt>What do I do in free time?</dt>
+            <dd>Lots of reading, games and music production</dd>
+            <dt>What else?</dt>
+            <dd>Just scroll down</dd>
+          </dl>
+        </div>
+        <div class="column">
+          {% include content/experience.html %}
+          {% include content/education.html %}
+        </div>
       </div>
-      {% include content/experience.html %}
-      {% include content/education.html %}
     </div>
   </div>
 </section>
