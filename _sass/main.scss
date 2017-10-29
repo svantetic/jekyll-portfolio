@@ -1,1 +1,6 @@
-@import '../node_modules/milligram/src/milligram.sass';
+@import '../node_modules/bulma/sass/utilities/initial-variables.sass';
+
+
+@import '../node_modules/bulma/bulma.sass';
+@import 'partials/typography';
+@import 'layout/navigation';

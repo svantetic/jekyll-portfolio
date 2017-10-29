@@ -2,12 +2,13 @@
   <h2 class="section__heading">
     EXP
   </h2>
-  <table class="table table--experience">
+  <table class="table is-hoverable table--experience">
     <tr>
       <th>when</th>
       <th>where</th>
       <th>who</th>
     </tr>
+    <tbody>
     {% for job in site.data.experience %}
       <tr>
         <td>{{ job.when }}</td>
@@ -15,5 +16,6 @@
         <td>{{ job.who }}</td>
       </tr>
     {% endfor %}
+  </tbody>
   </table>
 </div>
