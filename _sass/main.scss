@@ -1,6 +1,6 @@
-@import '../node_modules/bulma/sass/utilities/initial-variables.sass';
+@import 'sass/utilities/initial-variables';
 @import 'partials/variables';
-@import '../node_modules/bulma/bulma.sass';
+@import 'bulma.sass';
 @import 'partials/mixins';
 @import 'partials/resets';
 @import 'partials/typography';
