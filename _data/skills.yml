@@ -25,6 +25,10 @@ skills:
         commercial: true
   - category: other
     names: 
+      - name: git
+        commercial: true
+      - name: jira
+        commercial: true
       - name: HubSpot
         commercial: true
       - name: jekyll

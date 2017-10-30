@@ -7,12 +7,17 @@
 }
 
 .navigation {
-  padding: 1rem;
-  position: relative;
+  padding: 15px 25px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: white;
   &__list {
     position: fixed;
     top: 0;
@@ -26,5 +31,17 @@
     bottom: 0;
     color: rgba(black, .9);
     font-size: 1.4rem;
+    &--active {
+      display: flex;
+    }
+
   }
+      &__link {
+        color: $main-color;
+      }
+}
+
+.navbar-burger {
+  border: none;
+  height: 2.25rem;
 }

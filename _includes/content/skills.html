@@ -1,4 +1,4 @@
-<section class="section section--skills">
+<section class="section section--skills" id="skills">
   <div class="container">
 
   <h2 class="section__heading">
@@ -7,19 +7,21 @@
   <div class="columns">
   {% for skill in site.data.skills.skills %}
     
-      <div class="column skill">
-        <h3 class="skill__category">
-          {{ skill.category }}
-        </h3>
-        <ul class="skill__list">
-          {% for skill in skill.names %}
-          <li class="skill__element">
-            <p class="skill__name {% if skill.commercial == true %} skill__name--experiened {% endif %} ">
-              {{ skill.name }}
-            </p>
-          </li>
-          {% endfor %}
-        </ul>
+      <div class="column">
+        <div class="skill">
+          <h3 class="skill__category">
+            {{ skill.category }}
+          </h3>
+          <ul class="skill__list">
+            {% for skill in skill.names %}
+            <li class="skill__element">
+              <p class="skill__name {% if skill.commercial == true %} skill__name--experiened {% endif %} ">
+                {{ skill.name }}
+              </p>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
       </div>
     {% endfor %}
   </div>
