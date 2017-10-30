@@ -1,13 +1,13 @@
-<section class="section section--skills" id="skills">
+<div class="section section--skills" id="skills">
   <div class="container">
 
-  <h2 class="section__heading">
-    Skills
-  </h2>
-  <div class="columns">
-  {% for skill in site.data.skills.skills %}
-    
-      <div class="column">
+    <h2 class="section__heading">
+      Skills
+    </h2>
+    <div class="columns is-multiline">
+      {% for skill in site.data.skills.skills %}
+
+      <div class="column is-4">
         <div class="skill">
           <h3 class="skill__category">
             {{ skill.category }}
@@ -15,7 +15,7 @@
           <ul class="skill__list">
             {% for skill in skill.names %}
             <li class="skill__element">
-              <p class="skill__name {% if skill.commercial == true %} skill__name--experiened {% endif %} ">
+              <p class="skill__name {% if skill.commercial == true %} skill__name--commercial {% endif %} ">
                 {{ skill.name }}
               </p>
             </li>
@@ -23,7 +23,11 @@
           </ul>
         </div>
       </div>
-    {% endfor %}
+      {% endfor %}
+      <div class="column">
+        <p class="skill__disclaimer">commercial experience marked with
+            <strong>bold</strong> font</p>
+      </div>
+    </div>
   </div>
-  </div>
-</section>
+</div>

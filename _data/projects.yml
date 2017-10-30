@@ -8,33 +8,6 @@
       - learning
     image: 
     url: https://github.com/svantetic/react-simple-speed-dial/tree/master
-  - name: techgarden map
-    description: job interview project. visualising position of cars on a map and provide filter and clustering options
-    tags:
-      - google maps api
-      - vue
-    image: 
-    url: https://github.com/svantetic/techgarden-map
-  - name: venture todo
-    description: another job interview project. simple todo list written in react / redux
-    tags:
-      - react
-      - redux
-    image:
-    url: https://github.com/svantetic/venture-todo
-  - name: react shopping cart
-    description: shopping cart written in react, just to get a grasp of react/redux
-    tags:
-      - react
-      - redux
-    image:
-    url: https://svantetic.github.io/react-shopping-cart/
-  - name: vue todo
-    description: yet another todo app, this time using localStorage
-    tags:
-      - vue
-    image:
-    url: http://svantetic.github.io/vuejs-todo
   - name: vanilla snake
     description: simple snake game written in es6 and canvas
     tags:
@@ -42,21 +15,33 @@
       - canvas
     image:
     url: https://github.com/svantetic/vanilla-snake
-- branch: websites
-  projects:
-  - name: QueenArt
-    description: designed from scratch and implemented to wp
+  - name: techgarden map
+    description: job interview project. visualising position of cars on a map and provide filter and clustering options
     tags:
-      - wordpress
-      - design
-    url: http://queen-art.pl/
+      - google maps api
+      - vue
+    image: 
+    url: https://github.com/svantetic/techgarden-map
+  - name: react shopping cart
+    description: shopping cart written in react, just to get a grasp of react/redux
+    tags:
+    - react
+    - redux
     image:
-  - name: 6minded
-    description: static company's webpage with vuejs scripts
+    url: https://svantetic.github.io/react-shopping-cart/
+  - name: venture todo
+    description: another job interview project. simple todo list written in react / redux
+    tags:
+      - react
+      - redux
+    image:
+    url: https://github.com/svantetic/venture-todo
+  - name: vue todo
+    description: yet another todo app, this time using vue and localStorage
     tags:
       - vue
-    url: http://6minded.com/
     image:
+    url: http://svantetic.github.io/vuejs-todo
 - branch: work
   projects:
   - name: sodium v2 pack
@@ -72,5 +57,36 @@
       - vue
     image:
     url: http://customizer.clickray.eu/
-- branch: stuff
-  projects:
+  - name: grokker blog
+    description: blog page implemented on hubspot
+    tags:
+      - hubspot
+    image:
+    url: http://blog.grokker.com
+  - name: measurence blog
+    description: blog page implemented on hubspot
+    tags:
+      - hubspot
+    image:
+    url: https://www.measurence.com/blog/topic/case-studies 
+  - name: QueenArt
+    description: designed from scratch and implemented to wp as a freelance project
+    tags:
+      - wordpress
+      - design
+    url: http://queen-art.pl/
+    image:
+  - name: dariuszkosterka
+    description: my first website ever!!!
+    tags:
+      - static
+      - freelance
+    image:
+    url: http://dariuszkosterka.pl
+  - name: 6minded
+    description: static company's webpage with vuejs scripts
+    tags:
+      - vue
+    url: http://6minded.com/
+    image:
+- branch: ...and much more

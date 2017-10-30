@@ -1,0 +1,24 @@
+.section--contact {
+  text-align: center;
+  @include gradient(-45deg);
+  padding-bottom: 100px;
+  color: white;
+  .section__heading {
+    color: white;
+    &:after {
+      background: white;
+    }
+  }
+}
+
+.contact {
+  &__text {
+    margin-bottom: 25px;
+    margin-top: 75px;
+  }
+  &__mail {
+    font-size: 1.4rem;
+    color: white;
+    text-decoration: underline;
+  }
+}

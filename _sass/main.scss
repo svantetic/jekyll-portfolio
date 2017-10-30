@@ -1,6 +1,7 @@
 @import '../node_modules/bulma/sass/utilities/initial-variables.sass';
 @import 'partials/variables';
 @import '../node_modules/bulma/bulma.sass';
+@import 'partials/mixins';
 @import 'partials/resets';
 @import 'partials/typography';
 @import 'layout/navigation';
@@ -9,6 +10,7 @@
 @import 'layout/qa';
 @import 'layout/skills';
 @import 'layout/projects';
+@import 'layout/contact';
 @import 'layout/footer';
 
 body {

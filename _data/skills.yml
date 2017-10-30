@@ -18,7 +18,6 @@ skills:
         commercial: true
       - name: react / redux
       - name: react-native
-        commercial: true
       - name: laravel
       - name: node / express
       - name: jquery
@@ -29,7 +28,9 @@ skills:
         commercial: true
       - name: jira
         commercial: true
-      - name: HubSpot
+      - name: hubspot
+        commercial: true
+      - name: wordpress
         commercial: true
       - name: jekyll
       - name: jade / pug

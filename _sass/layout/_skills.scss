@@ -2,6 +2,9 @@
   text-align: center;
   &__name {
     margin: 0;
+    &--commercial {
+      font-weight: 400;
+    }
   }
   &__category {
     margin-bottom: 30px;
@@ -11,17 +14,19 @@
   &__list {
     margin-bottom: 50px;
   }
+
+  &__disclaimer {
+    padding: 0 15px;
+    color: #eee;
+    font-size: .8rem;
+    text-align: center;
+  }
 }
 
 .section {
   &--skills {
     color: white;    
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5b42bf+1,b66ecc+86 */
-    background: #5b42bf; /* Old browsers */
-    background: -moz-linear-gradient(-45deg,  #5b42bf 1%, #b66ecc 86%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg,  #5b42bf 1%,#b66ecc 86%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg,  #5b42bf 1%,#b66ecc 86%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5b42bf', endColorstr='#b66ecc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    @include gradient(45deg);
     .section__heading {
       color: white;
       &:after {
