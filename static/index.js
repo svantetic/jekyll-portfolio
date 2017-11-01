@@ -4,6 +4,8 @@ window.onload = function() {
       var navigationList = document.querySelector('.navigation__list');
       var navigationLinks = document.querySelectorAll('.navigation__link');
       var navigationToggledClass = 'navigation__list--active';
+      var body = document.querySelector('html');
+      var scrollDisabledClass = 'scroll-disabled';
       return {
         initEventListeners: function() {
           navigationButton.addEventListener('click', this.toggleNavigationList);
@@ -14,20 +16,20 @@ window.onload = function() {
         toggleNavigationList: function() {
           if (navigationList.classList.contains(navigationToggledClass)) {
             navigationList.classList.remove(navigationToggledClass);
-          } else navigationList.classList.add(navigationToggledClass);
+            body.classList.remove(scrollDisabledClass);
+          } else {
+            navigationList.classList.add(navigationToggledClass);
+            body.classList.add(scrollDisabledClass);
+          }
         },
         closeNavigationList: function() {
           navigationList.classList.remove(navigationToggledClass);
-          console.log('closing navigatin list');
+          body.classList.remove(scrollDisabledClass);
+          
         }
       }
     })();
 
     Navigator.initEventListeners();
 
-    // navigationButton.addEventListener('click', function(event) {
-    //   if (navigationList.classList.contains(navigationToggleClass)) {
-    //     navigationList.classList.remove(navigationToggleClass);
-    //   } else navigationList.classList.add(navigationToggleClass);
-    // })
 }

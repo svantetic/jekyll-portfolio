@@ -5,3 +5,7 @@
     background: linear-gradient($angle,  #5b42bf 1%,#b66ecc 86%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5b42bf', endColorstr='#b66ecc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
+
+.scroll-disabled {
+    overflow: hidden;
+}
