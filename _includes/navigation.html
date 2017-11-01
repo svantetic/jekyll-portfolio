@@ -21,6 +21,7 @@
           </a>
         </li>
     </ul>
+    {% if page.url != "/blog.html" %}
     <ul class="navigation__list">
         <li class="navigation__element navbar-item">
           <a href="#about-me" class="navigation__link">About Me</a>
@@ -38,6 +39,17 @@
           <a href="#blog" class="navigation__link">Blog</a>
         </li> -->
     </ul>
+    {% else %}
+      <ul class="navigation__list">
+        <li class="navigation__element navbar-item">
+          <a href="arkadiuszm.pl" class="navigation__link">Portfolio</a>
+        </li>
+        <!-- <li class="navigation__element navbar-item">
+          <a href="#blog" class="navigation__link">Blog</a>
+        </li> -->
+    </ul>
+    {% endif %}
+    
     <button class="button navbar-burger">
       <span></span>
       <span></span>
