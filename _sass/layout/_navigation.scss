@@ -15,26 +15,34 @@
   right: 0;
   z-index: 2;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   background: white;
   box-shadow: 5px 0px 15px rgba(black, .12);
   @media screen and (min-width: $tablet) {
     padding: 15px 75px;
   }
+
+  &__element {
+    margin: 40px 0;
+    @media screen and (min-width: $tablet) {
+      margin-bottom: 0;
+    }
+  }
+
   &__list {
     position: fixed;
     top: 0;
     left: 0;
     background: rgba(white, .9);
     text-align: center;
-    display: none;    
-    justify-content: space-around;
+    display: none;
     flex-direction: column;
+    justify-content: flex-end;
     right: 0;
     bottom: 0;
     color: rgba(black, .9);
     font-size: 1.4rem;
+  
     &--active {
       display: flex;
     }
