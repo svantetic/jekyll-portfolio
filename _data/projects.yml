@@ -15,13 +15,13 @@
       - canvas
     image:
     url: https://github.com/svantetic/vanilla-snake
-  - name: techgarden map
-    description: job interview project. visualising position of cars on a map and provide filter and clustering options
+  - name: ny times api test project
+    description: job interview project. getting articles from NY Times and filtering the data by user input
     tags:
-      - google maps api
+      - ny times
       - vue
     image: 
-    url: https://github.com/svantetic/techgarden-map
+    url: https://github.com/svantetic/gmi-test-app
   - name: react shopping cart
     description: shopping cart written in react, just to get a grasp of react/redux
     tags:
