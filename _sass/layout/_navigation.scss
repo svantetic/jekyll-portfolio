@@ -54,4 +54,7 @@
 .navbar-burger {
   border: none;
   height: 2.25rem;
+  @media screen and (min-width: $tablet) {
+    display: none;
+  }
 }
