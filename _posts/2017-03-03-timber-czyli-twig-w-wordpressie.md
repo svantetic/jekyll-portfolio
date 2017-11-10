@@ -24,13 +24,14 @@ Jedynym minusem jaki zauważam to dokumentacja, która jest niejasno zorganizowa
 ### Jak zacząć korzystać z Timbera?
 
 Po pierwsze musimy zainstalować wtyczkę z repozytorium Wordpressa:
-<pre class="lang:default decode:true">https://pl.wordpress.org/plugins/timber-library/</pre>
+`https://pl.wordpress.org/plugins/timber-library/`
 W tym momencie możemy już zacząć używać rozszerzeniaa
 
 Na warsztat weźmy plik index.php, który w miom przypadku będzie odpowiadał za wyświetlenie listingu konkretnych customowych postów na stronie głównej.
 
 Jak wygląda plik index.php (odpowiedzialny za stronę główną + blog listing) na przykładzie domyślnego szablonu Wordpress o nazwie TwentySeventeen?
-<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="tutti">&lt;div id="primary" class="content-area"&gt;
+{% raw %} 
+&lt;div id="primary" class="content-area"&gt;
 
 &lt;php if ( have_posts() ) :
 
@@ -44,12 +45,12 @@ while ( have_posts() ) : the_post();
 */
 get_template_part( 'template-parts/post/content', get_post_format() );
 
-endwhile;</pre>
+endwhile;{% endraw %}
 &nbsp;
-<div id="primary" class="content-area">
 
 Includowany plik z folderu template-parts zawiera standardowy widok posta.
-<pre class="EnlighterJSRAW" data-enlighter-language="php">&lt;article id="post-&lt;?php the_ID(); ?&gt;" &lt;?php post_class(); ?&gt;&gt;
+
+{% raw %} 
   &lt;?php
     if ( is_sticky() &amp;&amp; is_home() ) :
       echo twentyseventeen_get_svg( array( 'icon' =&gt; 'thumb-tack' ) );
@@ -74,15 +75,15 @@ Includowany plik z folderu template-parts zawiera standardowy widok posta.
         the_title( '&lt;h2 class="entry-title"&gt;&lt;a href="' . esc_url( get_permalink() ) . '" rel="bookmark"&gt;', '&lt;/a&gt;&lt;/h2&gt;' );
       }
     ?&gt;
-  &lt;/header&gt;&lt;!-- .entry-header --&gt;</pre>
+  &lt;/header&gt;&lt;!-- .entry-header --&gt;
+{% endraw %}
 To tylko część kodu - nie ma sensu wklejać całego pliku, ponieważ każdy może go znaleźć w katalogu
-<pre>wp-contents/themes/twenty-seventeen/template-parts/post/content.php</pre>
+
+`wp-contents/themes/twenty-seventeen/template-parts/post/content.php`
+
 Jak widać wygląda to niezbyt zachęcająco. Już sama kwestia mieszania PHP z HTMLem działa na niektórych anty-wordpressowców jak płachta na byka.
 
 W tym momencie na pomoc przychodzi Timber, który sprawia, że pisanie pliku szablonu staje się znacznie bardziej przyjemniejsze. Przykład będzie opierał się na moim procesie tworzenia tego bloga.
-
-</div>
-<div id="primary" class="content-area">
 
 Zaczynamy od podzielenia pliku index.php na dwa:
 
@@ -90,15 +91,19 @@ Zaczynamy od podzielenia pliku index.php na dwa:
 2.  Drugi, o nazwie na przykład layout-home.twig bądź twig-home.twig opowiadał będzie tylko za widok tychże postów.
 Po zmianie index.php, pierwsze jego linijki powinny wyglądać mniej więcej tak:
 
-</div>
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;?php
+{% raw %}
 
-$context = Timber::get_context();</pre>
+```
+$context = Timber::get_context();
+```
+
+{% endraw %}
 Czym jest $context?
 
 Szybki var_dump i dostajemy takie coś
-<div id="primary" class="content-area">
-<pre class="EnlighterJSRAW" data-enlighter-language="null">string 'http://arkadiusm.dev' (length=20)
+
+{% raw %} 
+string 'http://arkadiusm.dev' (length=20)
 'wp_title' =&gt; string '' (length=0)
 'wp_head' =&gt;
 object(Timber\FunctionWrapper)[309]
@@ -116,7 +121,8 @@ private '_args' =&gt;
 array (size=0)
 empty
 private '_use_ob' =&gt; boolean false
-'body_class' =&gt; string 'home page-template page-template-index page-template-index-php page page-id-6' (length=77)</pre>
+'body_class' =&gt; string 'home page-template page-template-index page-template-index-php page page-id-6' (length=77)
+{% endraw %}
 &nbsp;
 
 Jak widać pod obiektem kryją się wszystkie przydatne pola używane w pliku szablonu, do których możemy się odwołać, takie jak body_class.
@@ -128,14 +134,14 @@ Aby dodać do dyspozycji widokowi jakieś konkretne zmienne, obiekty lub tablice
 W tym przypadku będzie to Timber::get_posts(), która odpowiada za zwracanie postów.
 
 Jednocześnie przyjmie ona argumenty odpowiedzialne za wybranie tylko i wyłącznie postów o typie "project" i posortuje je w kolejności od najstarszego do najnowszego.
-<pre class="EnlighterJSRAW" data-enlighter-language="null">$post_args = array ( "post_type" =&amp;gt; "project", "order" =&amp;gt; "asc" );
+{% raw %}$post_args = array ( "post_type" =&amp;gt; "project", "order" =&amp;gt; "asc" );
 $context["projects"] = Timber::get_posts( $post_args )
 
-</pre>
+{% endraw %}
 
 Aby przesłać działający zbiór postów i wyświetlić stronę potrzebujemy użyć jeszcze jednej funkcji
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">$context["post"] = Timber\Post();</pre>
+{% raw %}$context["post"] = Timber\Post();{% endraw %}
 
 W tym momencie mamy dostęp do tekstu zdefiniowanego podczas tworzenia nowej strony. Taką samą konstrukcję należy zastosować jeżeli renderujemy np. widok dla jednego posta w single.php. Bez tego cały tekst czy custom fieldy nie pokażą się w widoku szablonu.
 
@@ -143,7 +149,8 @@ Następnym i ostatnim już krokiem jest wywołanie metody Timber::render() z dwo
 
 Cały kod pliku index.php powinien wyglądać następująco:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">$context = Timber::get_context();
+{% raw %}
+$context = Timber::get_context();
 $context['header'] = get_header();
 $context['post'] = new Timber\Post();
 $postargs = array(
@@ -151,12 +158,12 @@ $postargs = array(
 "order" =&gt; "asc"
 );
 $context['projects'] = Timber::get_posts( $postargs );
-Timber::render("twig-layouts/index-layout.twig", $context);</pre>
+Timber::render("twig-layouts/index-layout.twig", $context);
 &nbsp;
+{% endraw %}
 
-Prosto i przyjemnie. W pliku index-layout.twig zajmujemy się już tylko i wyłącznie wyświetleniem odpowiednich rzeczy za podwójnych nawiasów lub {% %}.
-
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;section id="projects" class="section section--projects"&gt;
+Prosto i przyjemnie. W pliku index-layout.twig zajmujemy się już tylko i wyłącznie wyświetleniem odpowiednich rzeczy za podwójnych nawiasów lub {% raw %}`{% %}` {% endraw %}
+{% raw %}&lt;section id="projects" class="section section--projects"&gt;
 &lt;h2 class="section__title"&gt;Projects&lt;/h2&gt;
 &lt;div class="section__content project__container"&gt;
 
@@ -175,13 +182,14 @@ Prosto i przyjemnie. W pliku index-layout.twig zajmujemy się już tylko i wył�
 {% endfor %}
 
 &lt;/div&gt;
-&lt;/section&gt;</pre>
-
+&lt;/section&gt;
+{% endraw %}
 Wtyczka dobrze współgra z kolejnym must-have przy tworzeniu szablonów, a mianowicie Advanced Custom Field. Wystarczy wywołać metodę  post.get_field("nazwa") aby odwołać się do zdefiniowanego przez nas wcześniej pola.
 
 W pliku .twig możemy oczywiście korzystać z funkcji extends czy include, co daje nam jeszcze więcej możliwości podzielenia szablonu na składowe.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">{% include 'twig-layouts/header-layout.twig' %}
+{% raw %}
+{% include 'twig-layouts/header-layout.twig' %}
 
 &lt;body class="{{ body_class }}"&gt;
   {% include 'twig-layouts/partials/blog-navigation-layout.twig' %}
@@ -191,28 +199,27 @@ W pliku .twig możemy oczywiście korzystać z funkcji extends czy include, co d
     &lt;p class="blog-header__subtitle"&gt;junior web developera&lt;/p&gt;
 
   &lt;/div&gt;
-  &lt;/header&gt;</pre>
+  &lt;/header&gt;
+
+{% endraw %}
 W powyższym przykładzie cały kod nagłówka jest w header-layout a nawigacja w blog-navigation-layout.
 
 Co znajduje się przy tagu otwierającym body?
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;body class="{{ body_class }}"&gt;</pre>
-</div>
+{% raw %}&lt;body class="{{ body_class }}"&gt;{% endraw %}
 
 Zmienna body_class znajdowała się już w tablicy $context. Timber ładuje wszystkie najczęściej używane w szablonie zmienne przy wywołaniu Timber::getContext(). Również w includowanym pliku header-layout.twig możemy odwołać się do tych zmiennych
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;meta name="description" content="{{site.description}}"&gt;
-   &lt;link rel="stylesheet" href="{{site.theme.link}}/style.css" type="text/css" /&gt;</pre>
+{% raw %}&lt;meta name="description" content="{{site.description}}"&gt;
+   &lt;link rel="stylesheet" href="{{site.theme.link}}/style.css" type="text/css" /&gt;{% endraw %}
 Timber posiada też wbudowaną opcję wywoływania Wordpressowych funkcji szablonu takich jak wp_head.
 
 Wystarczy dopisać
-<pre class="EnlighterJSRAW" data-enlighter-language="null">{{function('wp_head')}}</pre>
+{% raw %}{{function('wp_head')}}{% endraw %}
 
 W ten łatwy i przyjemny sposób możemy oddzielić logikę od prezentacji.
 
-<div id="primary" class="content-area">
 
 Zachęcam do testowania i sprawdzenia [oficjalnego repozytorium](https://github.com/timber/timber) wtyczki a także[ dokumentacji.](https://upstatement.com/timber/)
 
-</div>
 
 PS. Ciągle walczę z kolorowaniem i formatowaniem składni, tak więc niektóre z snippetów mogą zostać pozbawione tabulatorów i spacji.

@@ -10,8 +10,6 @@ date: 2017-02-26 22:32:51
 
 ### Kim jestem?
 
-Junior developer zakłada bloga? Jak to tak, o czym on niby ma pisać, czego on ma uczyć kogoś innego? Postaram się odpowiedzieć na to pytanie poniżej.
-
 Nazywam się Arkadiusz, level 23, pracuję jako front-end developer od półtora roku, obecnie w trybie zdalnym, zleceniowym. Przez kawał swojego życia tworzyłem muzykę rockową i elektroniczną, a także prowadziłem bloga, na którym wrzucałem recenzje swoich ulubionych lub wartych polecenia płyt z przeróżnych gatunków muzycznych.
 
 Zawsze starałem się napisać je w sposób ciekawy dla czytelnika, opisując subiektywne wrażenia z odsłuchu i obiektywną warstwę muzyczną zostawiając jednak dla odbiorcy nutę tajemnicy, aby zachęcić go do przesłuchania krążka

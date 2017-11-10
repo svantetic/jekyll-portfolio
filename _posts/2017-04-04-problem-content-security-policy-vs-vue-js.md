@@ -1,7 +1,5 @@
 ---
 title: 'Problem: Content Security Policy vs Vue.js'
-tags:
-  - Vue
 id: 215
 categories:
   - dajsiepoznac2017

@@ -14,17 +14,19 @@ Ostatnio podczas żmudnej pracy nad pewnym firmowym blogiem na platformie [HubSp
 Po wykupieniu konta na platformie otrzymujemy miejsce na szablony pojedynczych stron / bloga / mailingów, które możemy edytować z wizualnego panelu. Aby umożliwić klientowi czy pracownikowi firmy dodanie contentu szablonu, należy umieścić w nim tagi [HubL](http://designers.hubspot.com/docs/hubl/intro-to-hubl), czyli języka opartego na Twigu, lub bardziej precyzyjnie na template engine [Jinja](http://jinja.pocoo.org/). W ten sposób w przewidzianym przez designera / developera miejscu użytkownik może dodać swój własny tekst, zdjęcie, link czy przyciski.
 
 Przykładowy kod nagłówka wraz z tagiem HubL wygląda tak
-<pre class="EnlighterJSRAW" data-enlighter-language="html">&lt;h1&gt;
+{% raw%}
+&lt;h1&gt;
 {% text "header_text_1" label="Enter header text", value="Default header" no_wrapper=True %}
-&lt;/h1&gt;</pre>
+&lt;/h1&gt;
+{% endraw %}
 Tag składa się z kilku części
 
-1.  otwierające nawiasy z procentem {%
+1.  otwierające nawiasy z procentem
 2.  nazwa pola przetwarzana przez backend HubSpota. Na jednej stronie nie może być dwóch pól o takiej samej nazwie
 3.  label opisujący co powinno tam się znajdować
 4.  domyślna wartość
 5.  parametr określający, czy kod zwróci czysty tekst czy zamknięty w tagi &lt;span&gt;&lt;/span&gt;
-6.  zamykające nawiasy z procentem %}
+6.  zamykające nawiasy z procentem
 Cała reszta to zwykły HTML, jednak aby strona nie była statyczna i nie mijała się z ideą szablonów HubSpot z reguły dąży się do jak największej ilości edytowalnych elementów. W ten sposób każde zdjęcie, tekst, przycisk czy moduł (niezależne od siebie bloki kodu, które można wstawić w dowolne miejsce strony) powinno być wstawione za pomocą tagu w odpowiednie pole. Jeżeli takich miejsc mamy kilkanaście, pisanie (lub kopiowanie z dokumentacji, co zdarzało mi się znacznie częściej niż pisanie z pamięci) za każdym razem dosyć długiej formułki jest bardzo uciążliwe.
 
 Jako, że jestem zwolennikiem jak największej optymalizacji i automatyzacji powtarzalnych czynności postanowiłem stworzyć swoje własne reguły do Emmeta, które znacznie przyspieszą proces pisania stron z tagami HubL.
@@ -51,7 +53,7 @@ Po dodaniu wygląda to następująco
 [![](http://arkadiuszm.pl/wp-content/uploads/2017/09/emmet-tut-3.png)](http://arkadiuszm.pl/wp-content/uploads/2017/09/emmet-tut-3.png)
 
 Oraz w kodzie:
-<pre class="EnlighterJSRAW" data-enlighter-language="json">{
+{% raw %}{
   "snippets": {
     "javascript": {
       "abbreviations": {
@@ -66,7 +68,7 @@ Oraz w kodzie:
       }
     }
   }
-}</pre>
+}{% endraw %}
 Miejsca, w które ma przeskakiwać kursor po wciśnięciu TAB oznaczone są za pomocą dolara z numerem. Ukośniki to character escaping, ponieważ w kodzie tagów znajduje się cudzysłów.
 
 Po zapisaniu konfiguracji można już skorzystać ze zdefiniowanych skrótów. W moim przypadku po napisaniu hubltext generowany jest praktycznie gotowy kod tagu:
