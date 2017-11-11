@@ -1,0 +1,12 @@
+.post {
+  &__container {
+    margin-top: 100px;
+  }
+  &__content {
+    ul {
+      list-style: square;
+      padding-left: 20px;
+      margin-bottom: 10px;
+    }
+}
+}

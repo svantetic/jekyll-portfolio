@@ -3,6 +3,7 @@ title: Ekosystem Vue
 tags:
   - Vue
 id: 256
+layout: post
 categories:
   - dajsiepoznac2017
 date: 2017-04-24 14:57:42

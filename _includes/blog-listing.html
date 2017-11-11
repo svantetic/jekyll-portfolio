@@ -1,14 +1,13 @@
 <div class="blog-listing">
   <div class="container">
-    <div class="row">
+    <div class="columns is-multiline">
       {% for post in site.posts %}
-      <div class="col-md-6">
+      <div class="column is-6">
         <article class="post">
-          <p> {{ post.title }}</p>
+          <a href="{{ post.url }}">{{ post.title }}</a>
         </article>
       </div>
       {% endfor %}
     </div>
   </div>
- 
 </div>
