@@ -17,11 +17,11 @@ Wczoraj kilkadziesiąt minut spędziłem na szukaniu odpowiedniej metody w Chrom
 ### Od początku
 
 Metoda, której szukałem to
-<pre>chrome.runtime.onInstalled()
+`chrome.runtime.onInstalled()`
 
-</pre>
+
 Byłem przekonany, że wystarczy wrzucić ją przed wywołaniem i podpięciem głównej instancji Vue wtyczki, w ten oto sposób
-<pre class="EnlighterJSRAW" data-enlighter-language="null">chrome.runtime.onInstalled.addListener((reason) => { ... });
+{% highlight javascript %}chrome.runtime.onInstalled.addListener((reason) => { ... });
 
 import Vue from 'vue';
 import App from './App.vue';
@@ -29,11 +29,11 @@ import App from './App.vue';
 new Vue({
     el: '#container',
     render: r => r(App)
-});</pre>
+});{% endhighlight %}
 Niestety ten sposób nie działa, ponieważ zanim skrypt zostanie przetworzony event onInstalled dawno się odpali a listener nie uruchomi odpowiedniej funkcji.
 
 Kilka stron na stackoverflow później dowiedziałem się, że we wtyczce może istnieć specjalny skrypt background.js, gdzie mogą się znajdować wszystkie funkcje/handlery odpowiedzialne za działanie wtyczki za kulisami. Aby to zrobić należy po stworzeniu takiego skryptu dopisać informację o nim w pliku manifestu.
-<pre class="EnlighterJSRAW" data-enlighter-language="json">"permissions": [
+{% highlight json %}"permissions": [
     "activeTab",
     "bookmarks"
   ],
@@ -42,16 +42,16 @@ Kilka stron na stackoverflow później dowiedziałem się, że we wtyczce może 
   },
   "chrome_url_overrides": {
     "newtab": "./simple-speed-dial.html"
-  }</pre>
+  }{% endhighlight %}
 Debugowanie takiego pliku nie jest możliwe za pomocą starego dobrego console.log. Użyłem za tem jeszcze starszego i jeszcze lepszego alerta, który pokazuje czy funkcja handlera została odpalona.
-<pre class="EnlighterJSRAW" data-enlighter-language="js">chrome.runtime.onInstalled.addListener((reason) => {
+{% highlight javascript %}chrome.runtime.onInstalled.addListener((reason) => {
     alert('installed!');
 });
-</pre>
+{% endhighlight %}
 Chciałem tutaj użyć Promises API, ponieważ będę miał do czynienia z dwoma funkcjami wykonującymi się asynchronicznie - runtime.onInstalled i chrome.bookmarks.search().
 
 Niestety w przeszukiwaniu internetu wpadłem na 10 stron prezentujących przykładowe użycie obietnic, na których każdy sposób był inny od poprzedniego i następnego. Nie mogąc dojść do porozumienia z tą konstrukcją języka, postanowiłem tymczasowo oprzeć się na callbackach.
-<pre class="EnlighterJSRAW" data-enlighter-language="null">chrome.runtime.onInstalled.addListener((reason) => {
+{% highlight javascript %}chrome.runtime.onInstalled.addListener((reason) => {
     chrome.bookmarks.search('Simple Speed Dial', (bookmarks) => {
         if (bookmarks.length === 0)
             chrome.bookmarks.create({
@@ -59,13 +59,13 @@ Niestety w przeszukiwaniu internetu wpadłem na 10 stron prezentujących przykł
             });
         else alert('bookmarks folder already created!');
     })
-});</pre>
+});{% endhighlight %}
 &nbsp;
 
 Po zainstalowaniu/reloadzie wtyczki pokazuje się alert jeżeli folder jest już obecny w folderze "Inne zakładki".Oczywiście w końcowym kodzie nie będzie żadnych alertów.
 
 W samym komponencie Vue odpowiedzialnym za wtyczkę, tymczasowo znajduje się następujący kod
-<pre class="EnlighterJSRAW" data-enlighter-language="null">export default {
+{% highlight javascript %}export default {
         data: function () {
             return {
                 extensionFolderTitle: 'Simple Speed Dial',
@@ -84,7 +84,7 @@ W samym komponencie Vue odpowiedzialnym za wtyczkę, tymczasowo znajduje się na
         created: function () {
             this.fetchExtensionFolder();
         }
-    }</pre>
+    }{% endhighlight %}
 Po stworzeniu instancji wywołuję metode fetchExtensionFolder, która szuka w zakładkach folderu wtyczki. Search zwraca tablice znalezionych elementów, jednakże skrypt background.js tworzy jeden folder, jeżeli ten nie został wcześniej utworzony.
 
 ### 99 problems

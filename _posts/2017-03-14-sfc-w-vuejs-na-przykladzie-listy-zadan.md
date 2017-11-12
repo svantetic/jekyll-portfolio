@@ -22,7 +22,7 @@ Skoro wszyscy backendowcy mają kiedyś w ciągu swojego życia muszą napisać 
 ### Czym są Single File Components?
 
 W mojej treningowej aplikacji dostępnej podlinkowanej na samym dole artykułu, znajduje się komponent Vue zdefiniowany w głównym pliku aplikacji - niech to będzie main.js.
-<pre class="EnlighterJSRAW" data-enlighter-language="null">var todo = {
+{% highlight javascript %}var todo = {
   name: 'todo',
   props: ['name', 'text', 'id'],
   template: `<ul class="todo__element">
@@ -38,7 +38,7 @@ W mojej treningowej aplikacji dostępnej podlinkowanej na samym dole artykułu,�
     }
   }
 
-}</pre>
+}{% endhighlight %}
 W obiekcie Todo znajduje się kilka zmiennych.
 
 Name przechowuje nazwę komponentu, z której możemy skorzystać wywołując go w innym komponencie
@@ -52,7 +52,8 @@ Template, czyli główny szkopuł. Doszło tutaj do sytuacji niemal wyjętej z R
 A co gdyby cały nasz komponent, czyli kod szablonu HTML, logika Vue i styl w Sassie znajdował się w jednym pliku z rozszerzeniem .vue?
 
 Na pomoc przychodzą Single File Components, dzięki czemu wszystko staje się trochę bardziej przyjazne dla developera.
-<pre class="EnlighterJSRAW" data-enlighter-language="html"><template>
+{% highlight html %}
+{% raw %} <template>
 <ul class="todo__element">
               <li class="todo__detail todo__name"> {{ name }}</li>
               <li class="todo__detail todo__text"> {{ text }}</li>
@@ -82,7 +83,9 @@ export default {
   }
  ...
 
-</style></pre>
+</style>
+{% endraw %}
+{% endhighlight %}
 Ale jak to tak, w jednym pliku i widok i logika? Nie o to PHPowcy walczyli!
 
 Cóż, takie dysputy polecam zainteresowanym internetowymi wojnami, ja po prostu zostanę przy takim sposobie pisania aplikacji.
@@ -90,7 +93,7 @@ Cóż, takie dysputy polecam zainteresowanym internetowymi wojnami, ja po prostu
 Czym taki zapis różni się od tego standardowego sposobu, prosto w pliku .js? Po pierwsze - nie przypisujemy całej instancji komponentu do zmiennej, ani nie wywołujemy konstruktora Vue() lub Vue.component(). Zamiast tego cała logika znajduje się w nawiasach exports default {}, czyli polecenia eksportującego nasz kod do modułu możliwego do zaimportowania w innym pliku .vue lub entry poincie aplikacji.
 
 Jeżeli chcemy skorzystać z istniejącego modułu, po prostu używamy "import". Tutaj przykład z nadrzędnego komponentu renderującego kolejne zadania z otrzymywanej przez atrybut 'todos' listy zadań
-<pre class="EnlighterJSRAW" data-enlighter-highlight="8"><template>
+{% highlight javascript %} <template>
   <div class="todo__list">
           <todo v-for="singleTodo in todos" :name="singleTodo.name " :id="singleTodo.id" :text="singleTodo.text" ></todo>
             </tr>
@@ -108,9 +111,9 @@ export default {
 }
 </script>
 <style lang="scss">
-</style></pre>
+</style>{% endhighlight %}
 Należy też pamiętać, że w VueJS tworząc nowy komponent (nawet jeśli nie używamy single file components) data musi być funkcją zwracającą obiekt z danymi, a nie po prostu obiektem. Przykład z głównego komponentu mojej listy todo, gdzie funkcja data zwraca defaultowe, przykładowe TODO, jeżeli użytkownik w localStorage przeglądarki nie posiada już wcześniej zapisanych zadań:
-<pre class="EnlighterJSRAW" data-enlighter-language="null">data: function() {
+{% highlight javascript %}data: function() {
    return {
    todosFile: [{
      id: 1,
@@ -123,19 +126,19 @@ Należy też pamiętać, że w VueJS tworząc nowy komponent (nawet jeśli nie u
      text: "Send some important mails",
      completed: false
    }]
- }},</pre>
+ }},{% endhighlight %}
 &nbsp;
 
 ### Jak się to za to zabrać?
 
 Najprostszym sposobem będzie skorzystanie z gotowego rozwiązania w postaci **vue-cli**, które znajduje się pod adresem
-<pre>https://github.com/vuejs/vue-cli</pre>
+`https://github.com/vuejs/vue-cli`
 lub za pomocą npma
-<pre>npm install -g vue-cli</pre>
+`npm install -g vue-cli`
 Vue-cli jak sama nazwa wskazuje to command line interface zawierający w sobie kilka predefiniowanych generatorów scaffoldujących naszą aplikacje. Najprotszym rozwiązaniem jest webpack-simple, który po zainstalowaniu uruchomimy poleceniem
-<pre>vue init webpack-simple nazwa-projektu</pre>
+`vue init webpack-simple nazwa-projektu`
 Dostajemy wtedy gotowy package.json i config webpacka. Co nam to daje? A no możliwość kompilacji naszych single file components w plikach .vue do jednego dużego, gigantycznego wręcz bundle.js. Jakby tego było mało dostajemy też webpackowy serwer developerski z hot-reloadem modułów, czyli zmiany wprowadzane w naszych komponentach w czasie prawie-rzeczywistym lądują w przeglądarce bez przymusu wciskania CTRL+R.
-<pre>npm run dev</pre>
+`npm run dev`
 
 ### Jak wygląda struktura katalogów i jakie pułapki tam się znajdują?
 
@@ -144,27 +147,28 @@ Dostajemy wtedy gotowy package.json i config webpacka. Co nam to daje? A no mo�
 &nbsp;
 
 Struktura jest bardzo prosta. W src defaultowo znajduje się już przykładowy plik .vue oraz entry point naszej aplikacji, w którym musimy zaimportować główny komponent. **Należy pamiętać o wywołaniu funkcji render w środku komponentu i zdefiniowaniu "el" określającego punkt zamontowania naszej aplikacji w głównym pliku index.html**. W moim przypadku plik main.js wygląda tak:
-<pre class="EnlighterJSRAW" data-enlighter-language="js">import Vue from 'vue'
+{% highlight javascript %}import Vue from 'vue'
 import App from './App.vue'
 window.EventBus = new Vue()
 new Vue({
   el: '#app-container',
   render: h => h(App)
 })
-</pre>
+{% endhighlight %}
 &nbsp;
 
 Jeżeli komuś nie podoba się zaproponowany układ folderów można zmienić to w configu webpacka.
-<pre class="EnlighterJSRAW" data-enlighter-language="js">entry: './src/main.js',
+{% highlight javascript %}
+entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
     filename: 'build.js'
-  },</pre>
+  },{% endhighlight %}
 Przy kompilacji komponentów spotkałem się z problemem związanym z SCSSem.
 
 Webpack odwoływał się do niestniejącego modułu vue-style-loader. W takim wypadku należy uruchomić
-<pre>npm install --save-dev vue-style-loader</pre>
+`npm install --save-dev vue-style-loader`
 W przypadku innych problemów należy śledzić konsolę przeglądarki, która zwraca bardzo obszerne opisy błędów.
 
 ### Komu to potrzebne?

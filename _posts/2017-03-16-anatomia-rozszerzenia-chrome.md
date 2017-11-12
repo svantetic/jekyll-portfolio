@@ -24,7 +24,7 @@ Czym jest manifest? Jak sama nazwa wskazuje, bądź jak domyślają się np. pro
 ### Manifest rozszerzenia Chrome
 
 Tak wygląda przykładowy manifest:
-<pre class="EnlighterJSRAW" data-enlighter-language="json">{
+{% highlight json %}{
   "manifest_version": 2,
 
   "name": "Getting started example",
@@ -39,7 +39,7 @@ Tak wygląda przykładowy manifest:
     "activeTab"
 
   ]
-}</pre>
+}{% endhighlight %}
 Pierwsza linijka to wersja manifestu. Następnie:
 
 1.  nazwa rozszerzenia
@@ -67,7 +67,7 @@ To tylko niektóre z nich. Mnie interesuje coś, co nazywa się Override Pages, 
 2.  Wygląd historii
 3.  Menedżer zakładek
 Aby zacząć od stworzenia czegoś takiego w naszym pliku manifest.json należy zamieścić linijkę mówiącą co chcemy dokładnie zastąpić (newtab, history lub bookmarks)
-<pre class="EnlighterJSRAW" data-enlighter-language="json">{
+{% highlight json %}{
   "name": "Simple Speed Dial",
   ...
 
@@ -75,7 +75,7 @@ Aby zacząć od stworzenia czegoś takiego w naszym pliku manifest.json należy 
     "newtab": "simpleSpeedDial.html"
   },
   ...
-}</pre>
+}{% endhighlight %}
 Chrome rzuca też kilka bardziej lub mniej oczywistych tipów dotyczących tworzenia rozszerzenia typu Override Page.
 
 1.  Stwórz stronę szybką i o małym rozmiarze. Tłumaczyć tego nie muszę

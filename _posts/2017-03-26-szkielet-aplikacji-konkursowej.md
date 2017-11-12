@@ -49,7 +49,7 @@ W folderze ```dist``` znajdują się podkatalogi css i js, a w nim samym manifse
 &nbsp;
 
 Gulpfile prezentuje się następująco
-<pre class="EnlighterJSRAW" data-enlighter-language="js">const gulp = require('gulp');
+{% highlight javascript %}const gulp = require('gulp');
 const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
 
@@ -80,21 +80,21 @@ gulp.task('js', () => {
 gulp.task('watch', () => {
   gulp.watch(config.scss.srcDir, ['sass']);
   gulp.watch(config.js.srcDir, ['js']);
-});</pre>
+});{% endhighlight %}
 Uglify jest zakomentowany, ponieważ zwracał nieokreślony błąd podczas uruchomienia i średnio mam ochotę debugować to o tej porze.
 
 Testowy extension.js to alert z hello wordem
-<pre class="EnlighterJSRAW" data-enlighter-language="js">let a = 'helloa chrome';
-alert(a);</pre>
+{% highlight javascript %}let a = 'helloa chrome';
+alert(a);{% endhighlight %}
 (jeszcze z błędem)
 
 Index po prostu wczytuje te wymagane składniki i posiada randomowy nagłówek h1, a styl to dzieło sztuki debugowania ścieżek do plików
-<pre class="EnlighterJSRAW" data-enlighter-language="css">body {
+{% highlight css %}body {
   background: orange;
   color: white;
   margin: 0;
   padding: 0;
-}</pre>
+}{% endhighlight %}
 
 ###  Jak to zainstalować?
 
