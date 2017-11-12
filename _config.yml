@@ -24,6 +24,7 @@ github_username:  svantetic
 default_locale: "pl"
 # Build settings
 markdown: kramdown
+permalink: /:year/:month/:title.html
 highlighter: rouge
 theme: minima
 plugins:
