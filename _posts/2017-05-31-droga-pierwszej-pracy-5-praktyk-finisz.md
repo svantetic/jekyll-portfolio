@@ -1,6 +1,7 @@
 ---
-title: 'Droga do pierwszej pracy: #5 - praktyk i finisz'
+title: 'Droga do pierwszej pracy: #5 - praktyki i finisz'
 id: 284
+layout: post
 categories:
   - dajsiepoznac2017
 date: 2017-05-31 12:07:10
@@ -23,7 +24,7 @@ W ciągu tygodnia musiałem być tam 20 godzin, czyli zazwyczaj przychodziłem n
 Czy nauczyłem się czegoś podczas tego dwumiesięcznego okresu?
 
 Oczywiście. Po raz pierwszy miałem styczność z pracą dla konkretnego klienta w zespole, z rozwiązywaniem realnych problemów i mimo wszystko presją czasu, ponieważ zadanie należało wykonać do określonego terminu. Dodatkowo systematyczność pracy, przychodzenie na konkretną godzinę, codzienna styczność z kodem różnej jakości jeżeli nawet nie miało się ochoty nic tworzyć. Oprócz tego czytanie lub pisanie dokumentacji i wdrożenie się w projekt pisany przez kogoś innego. Zdarzały się też nudne i żmudne zadania jak pomoc z tłumaczeniem plików layoutu w Androidzie czy szukanie jakiejś biblioteki PHP (mimo, że moim stanowiskiem był front end intern), ale większość projektów była zazwyczaj ciekawa jak dla kogoś, kto nie ma komercyjnego doświadczenia.
-Minusem był brak styczności z JavaScriptem, którego zawsze uważałem za priorytet w nauce i średnia komunikacja w zespole. Czasami nie dostawałem żadnych zadań, zespół robił swoje rzeczy, wtedy wchodziłem na reddita i czytałem newsy, ze świata webdevu.
+Minusem był brak styczności z JavaScriptem, którego zawsze uważałem za priorytet w nauce i średnia komunikacja w zespole. Czasami nie dostawałem żadnych zadań, zespół robił swoje rzeczy, wtedy wchodziłem na reddita i czytałem newsy ze świata webdevu.
 
 Mimo to wyniosłem z pierwszej niby-pracy bardzo cenne doświadczenia a przede wszystkim pewność, że poradzę sobie na takim stanowisku w innej firmie. Jeżeli ktoś nie czuje się na siłach lub wie, że nie umie wystarczająco dużo aby iść na swój pierwszy etat jako front-end, studiuje i nie ma zbytnich problemów natury finansowej to polecam sprawdzić się w taki właśnie sposób.
 

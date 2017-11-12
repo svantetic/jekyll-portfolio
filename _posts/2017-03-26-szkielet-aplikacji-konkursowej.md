@@ -1,6 +1,7 @@
 ---
 title: Szkielet aplikacji konkursowej
 id: 194
+layout: post
 categories:
   - dajsiepoznac2017
 date: 2017-03-26 00:11:19
@@ -64,19 +65,19 @@ const config = {
   }
 }
 
-gulp.task('sass', () =&gt; {
+gulp.task('sass', () => {
   return gulp.src(config.scss.srcDir)
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest(config.scss.destDir))
 });
 
-gulp.task('js', () =&gt; {
+gulp.task('js', () => {
   return gulp.src(config.js.srcDir)
     // .pipe(uglify())
     .pipe(gulp.dest(config.js.destDir))
 });
 
-gulp.task('watch', () =&gt; {
+gulp.task('watch', () => {
   gulp.watch(config.scss.srcDir, ['sass']);
   gulp.watch(config.js.srcDir, ['js']);
 });</pre>

@@ -3,14 +3,13 @@ title: Powitanie
 tags:
   - droga do pierwszej pracy
 id: 34
+layout: post
+
 categories:
   - dajsiepoznac2017
 date: 2017-02-26 22:32:51
 ---
-
-### Kim jestem?
-
-Nazywam się Arkadiusz, level 23, pracuję jako front-end developer od półtora roku, obecnie w trybie zdalnym, zleceniowym. Przez kawał swojego życia tworzyłem muzykę rockową i elektroniczną, a także prowadziłem bloga, na którym wrzucałem recenzje swoich ulubionych lub wartych polecenia płyt z przeróżnych gatunków muzycznych.
+Nazywam się Arkadiusz, lat 24, pracuję jako front-end developer od początku 2016, obecnie w trybie zdalnym. Przez kawał swojego życia tworzyłem muzykę rockową i elektroniczną, a także prowadziłem bloga, na którym wrzucałem recenzje swoich ulubionych lub wartych polecenia płyt z przeróżnych gatunków muzycznych.
 
 Zawsze starałem się napisać je w sposób ciekawy dla czytelnika, opisując subiektywne wrażenia z odsłuchu i obiektywną warstwę muzyczną zostawiając jednak dla odbiorcy nutę tajemnicy, aby zachęcić go do przesłuchania krążka
 

@@ -3,10 +3,28 @@
     margin-top: 100px;
   }
   &__content {
+    padding-bottom: 100px;
     ul {
       list-style: square;
       padding-left: 20px;
       margin-bottom: 10px;
     }
+  }
+  &__title {
+    font-size: 2rem;
+  }
+  &__link {
+    word-break: normal;
+  }
 }
+.blog-listing, .post__container {
+  margin-top: 100px;
+  .container {
+    @media screen and (min-width: $tablet) {
+      padding: 0 200px;
+    }
+  }
+}
+.header--blog {
+  height: 400px;
 }

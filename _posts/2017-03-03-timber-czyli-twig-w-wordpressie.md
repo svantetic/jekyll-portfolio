@@ -4,6 +4,8 @@ id: 71
 categories:
   - dajsiepoznac2017
 date: 2017-03-03 22:59:12
+layout: post
+
 tags:
 ---
 
@@ -31,9 +33,9 @@ Na warsztat weźmy plik index.php, który w miom przypadku będzie odpowiadał 
 
 Jak wygląda plik index.php (odpowiedzialny za stronę główną + blog listing) na przykładzie domyślnego szablonu Wordpress o nazwie TwentySeventeen?
 {% raw %} 
-&lt;div id="primary" class="content-area"&gt;
+<div id="primary" class="content-area">
 
-&lt;php if ( have_posts() ) :
+<php if ( have_posts() ) :
 
 /* Start the Loop */
 while ( have_posts() ) : the_post();
@@ -51,31 +53,31 @@ endwhile;{% endraw %}
 Includowany plik z folderu template-parts zawiera standardowy widok posta.
 
 {% raw %} 
-  &lt;?php
-    if ( is_sticky() &amp;&amp; is_home() ) :
-      echo twentyseventeen_get_svg( array( 'icon' =&gt; 'thumb-tack' ) );
+  <?php
+    if ( is_sticky() && is_home() ) :
+      echo twentyseventeen_get_svg( array( 'icon' => 'thumb-tack' ) );
     endif;
-  ?&gt;
-  &lt;header class="entry-header"&gt;
-    &lt;?php
+  ?>
+  <header class="entry-header">
+    <?php
       if ( 'post' === get_post_type() ) :
-        echo '&lt;div class="entry-meta"&gt;';
+        echo '<div class="entry-meta">';
           if ( is_single() ) :
             twentyseventeen_posted_on();
           else :
             echo twentyseventeen_time_link();
             twentyseventeen_edit_link();
           endif;
-        echo '&lt;/div&gt;&lt;!-- .entry-meta --&gt;';
+        echo '</div><!-- .entry-meta -->';
       endif;
 
       if ( is_single() ) {
-        the_title( '&lt;h1 class="entry-title"&gt;', '&lt;/h1&gt;' );
+        the_title( '<h1 class="entry-title">', '</h1>' );
       } else {
-        the_title( '&lt;h2 class="entry-title"&gt;&lt;a href="' . esc_url( get_permalink() ) . '" rel="bookmark"&gt;', '&lt;/a&gt;&lt;/h2&gt;' );
+        the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
       }
-    ?&gt;
-  &lt;/header&gt;&lt;!-- .entry-header --&gt;
+    ?>
+  </header><!-- .entry-header -->
 {% endraw %}
 To tylko część kodu - nie ma sensu wklejać całego pliku, ponieważ każdy może go znaleźć w katalogu
 
@@ -104,24 +106,24 @@ Szybki var_dump i dostajemy takie coś
 
 {% raw %} 
 string 'http://arkadiusm.dev' (length=20)
-'wp_title' =&gt; string '' (length=0)
-'wp_head' =&gt;
+'wp_title' => string '' (length=0)
+'wp_head' =>
 object(Timber\FunctionWrapper)[309]
-private '_class' =&gt; null
-private '_function' =&gt; string 'wp_head' (length=7)
-private '_args' =&gt;
+private '_class' => null
+private '_function' => string 'wp_head' (length=7)
+private '_args' =>
 array (size=0)
 empty
-private '_use_ob' =&gt; boolean false
-'wp_footer' =&gt;
+private '_use_ob' => boolean false
+'wp_footer' =>
 object(Timber\FunctionWrapper)[308]
-private '_class' =&gt; null
-private '_function' =&gt; string 'wp_footer' (length=9)
-private '_args' =&gt;
+private '_class' => null
+private '_function' => string 'wp_footer' (length=9)
+private '_args' =>
 array (size=0)
 empty
-private '_use_ob' =&gt; boolean false
-'body_class' =&gt; string 'home page-template page-template-index page-template-index-php page page-id-6' (length=77)
+private '_use_ob' => boolean false
+'body_class' => string 'home page-template page-template-index page-template-index-php page page-id-6' (length=77)
 {% endraw %}
 &nbsp;
 
@@ -134,7 +136,7 @@ Aby dodać do dyspozycji widokowi jakieś konkretne zmienne, obiekty lub tablice
 W tym przypadku będzie to Timber::get_posts(), która odpowiada za zwracanie postów.
 
 Jednocześnie przyjmie ona argumenty odpowiedzialne za wybranie tylko i wyłącznie postów o typie "project" i posortuje je w kolejności od najstarszego do najnowszego.
-{% raw %}$post_args = array ( "post_type" =&amp;gt; "project", "order" =&amp;gt; "asc" );
+{% raw %}$post_args = array ( "post_type" =&gt; "project", "order" =&gt; "asc" );
 $context["projects"] = Timber::get_posts( $post_args )
 
 {% endraw %}
@@ -154,8 +156,8 @@ $context = Timber::get_context();
 $context['header'] = get_header();
 $context['post'] = new Timber\Post();
 $postargs = array(
-"post_type" =&gt; "projekt",
-"order" =&gt; "asc"
+"post_type" => "projekt",
+"order" => "asc"
 );
 $context['projects'] = Timber::get_posts( $postargs );
 Timber::render("twig-layouts/index-layout.twig", $context);
@@ -163,26 +165,26 @@ Timber::render("twig-layouts/index-layout.twig", $context);
 {% endraw %}
 
 Prosto i przyjemnie. W pliku index-layout.twig zajmujemy się już tylko i wyłącznie wyświetleniem odpowiednich rzeczy za podwójnych nawiasów lub {% raw %}`{% %}` {% endraw %}
-{% raw %}&lt;section id="projects" class="section section--projects"&gt;
-&lt;h2 class="section__title"&gt;Projects&lt;/h2&gt;
-&lt;div class="section__content project__container"&gt;
+{% raw %}<section id="projects" class="section section--projects">
+<h2 class="section__title">Projects</h2>
+<div class="section__content project__container">
 
 {% for project in projects %}
-&lt;div class="project"&gt;
+<div class="project">
 
-&lt;img class="project__image" src="{{project.thumbnail}}" /&gt;
-&lt;h5 class="project__title"&gt;{{ project.title }}&lt;/h5&gt;
+<img class="project__image" src="{{project.thumbnail}}" />
+<h5 class="project__title">{{ project.title }}</h5>
 {{ project.post_content }}
 
 {% if project.project_url %}
-&lt;a class="project__link" href="{{project.project_url}}"&gt;{{project.project_url}}&lt;/a&gt;
+<a class="project__link" href="{{project.project_url}}">{{project.project_url}}</a>
 {% endif %}
 
-&lt;/div&gt;
+</div>
 {% endfor %}
 
-&lt;/div&gt;
-&lt;/section&gt;
+</div>
+</section>
 {% endraw %}
 Wtyczka dobrze współgra z kolejnym must-have przy tworzeniu szablonów, a mianowicie Advanced Custom Field. Wystarczy wywołać metodę  post.get_field("nazwa") aby odwołać się do zdefiniowanego przez nas wcześniej pola.
 
@@ -191,26 +193,26 @@ W pliku .twig możemy oczywiście korzystać z funkcji extends czy include, co d
 {% raw %}
 {% include 'twig-layouts/header-layout.twig' %}
 
-&lt;body class="{{ body_class }}"&gt;
+<body class="{{ body_class }}">
   {% include 'twig-layouts/partials/blog-navigation-layout.twig' %}
-  &lt;header class="blog-header"&gt;
-  &lt;div class="container"&gt;
-    &lt;h1 class="blog-header__title"&gt;Blog &lt;/h1&gt;
-    &lt;p class="blog-header__subtitle"&gt;junior web developera&lt;/p&gt;
+  <header class="blog-header">
+  <div class="container">
+    <h1 class="blog-header__title">Blog </h1>
+    <p class="blog-header__subtitle">junior web developera</p>
 
-  &lt;/div&gt;
-  &lt;/header&gt;
+  </div>
+  </header>
 
 {% endraw %}
 W powyższym przykładzie cały kod nagłówka jest w header-layout a nawigacja w blog-navigation-layout.
 
 Co znajduje się przy tagu otwierającym body?
-{% raw %}&lt;body class="{{ body_class }}"&gt;{% endraw %}
+{% raw %}<body class="{{ body_class }}">{% endraw %}
 
 Zmienna body_class znajdowała się już w tablicy $context. Timber ładuje wszystkie najczęściej używane w szablonie zmienne przy wywołaniu Timber::getContext(). Również w includowanym pliku header-layout.twig możemy odwołać się do tych zmiennych
 
-{% raw %}&lt;meta name="description" content="{{site.description}}"&gt;
-   &lt;link rel="stylesheet" href="{{site.theme.link}}/style.css" type="text/css" /&gt;{% endraw %}
+{% raw %}<meta name="description" content="{{site.description}}">
+   <link rel="stylesheet" href="{{site.theme.link}}/style.css" type="text/css" />{% endraw %}
 Timber posiada też wbudowaną opcję wywoływania Wordpressowych funkcji szablonu takich jak wp_head.
 
 Wystarczy dopisać

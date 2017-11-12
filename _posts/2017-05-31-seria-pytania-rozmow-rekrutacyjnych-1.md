@@ -1,6 +1,7 @@
 ---
 title: 'Seria: pytania z rozmów rekrutacyjnych. #1'
 id: 288
+layout: post
 categories:
   - dajsiepoznac2017
 date: 2017-05-31 12:40:16

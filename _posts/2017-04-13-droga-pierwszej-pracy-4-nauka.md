@@ -1,6 +1,7 @@
 ---
 title: 'Droga do pierwszej pracy #4 - Nauka i projekty'
 id: 225
+layout: post
 categories:
   - dajsiepoznac2017
 date: 2017-04-13 11:05:53

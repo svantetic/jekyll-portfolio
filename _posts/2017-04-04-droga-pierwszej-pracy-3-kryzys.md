@@ -2,6 +2,7 @@
 title: 'Droga do pierwszej pracy #3 - Kryzys'
 tags:
   - droga do pierwszej pracy
+layout: post
 id: 41
 categories:
   - dajsiepoznac2017

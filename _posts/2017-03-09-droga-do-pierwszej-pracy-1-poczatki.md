@@ -1,6 +1,8 @@
 ---
 title: 'Droga do pierwszej pracy #1: Początki'
 id: 146
+layout: post
+
 categories:
   - dajsiepoznac2017
 date: 2017-03-09 21:10:16

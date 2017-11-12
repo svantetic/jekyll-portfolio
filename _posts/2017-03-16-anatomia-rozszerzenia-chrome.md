@@ -1,6 +1,8 @@
 ---
 title: Anatomia rozszerzenia Chrome
 id: 180
+layout: post
+
 categories:
   - dajsiepoznac2017
 date: 2017-03-16 22:49:04
@@ -77,7 +79,7 @@ Aby zacząć od stworzenia czegoś takiego w naszym pliku manifest.json należy 
 Chrome rzuca też kilka bardziej lub mniej oczywistych tipów dotyczących tworzenia rozszerzenia typu Override Page.
 
 1.  Stwórz stronę szybką i o małym rozmiarze. Tłumaczyć tego nie muszę
-2.  Dodaj tytuł do znacznika &lt;title&gt;. W przeciwnym razie pokaże się po prostu nazwa pliku, co może być nieco mylące.
+2.  Dodaj tytuł do znacznika <title>. W przeciwnym razie pokaże się po prostu nazwa pliku, co może być nieco mylące.
 3.  Pasek adresu zawsze dostaje focus po otwarciu nowej karty, więc nie warto opierać funkcji swojego rozszerzenia na 'autofocusie'. Niestety w kilku rozszerzeniach tego typu jakie testowałem następował swojego rodzaju focus-hijacking i zamiast standardowego zachowania focus znajdował się w super ulepszonym omniboksie, który fetchował dane autosugestii chyba z jakiegoś pakistańskiego serwera mirrorującego data-center Google, postawionego na Commodore 64, bo wszystko działało z prędkością żółwia.
 4.  **Nie emuluj standardowej strony nowej karty**. Przyznam, że trochę zbiło mnie to z tropu, ponieważ nie planowałem totalnej rewolucji w postrzeganiu speed diala. Dokumentacja mówi, że API służące np. do odczytywania najczęściej odwiedzanych lub niedawno zamkniętych stron jeszcze nie istnieje i sugeruje stworzenie czegoś kompletnie innego. Nie wiem, czy nie przeczytałem tego za późno, ale mam nadzieję, że sprawa nie ma się aż tak tragicznie i nie będę musiał wynajdować koła na nowo aby moja wtyczka przeszła przez weryfikacje i - co najważniejsze - działała poprawnie.
 Tyle na dziś. Kod na [GitHubie ](http://github.com/svantetic)dopiero jutro - nie mam na to siły dziś po walce z Mocha, Chai i pustym VPSem czekającym na konfiguracje.

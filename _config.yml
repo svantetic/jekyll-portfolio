@@ -24,6 +24,7 @@ github_username:  svantetic
 default_locale: "pl"
 # Build settings
 markdown: kramdown
+highlighter: rouge
 theme: minima
 plugins:
   - jekyll-feed

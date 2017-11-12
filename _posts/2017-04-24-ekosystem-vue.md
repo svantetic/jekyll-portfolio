@@ -9,9 +9,9 @@ categories:
 date: 2017-04-24 14:57:42
 ---
 
-### Słowo wstępne
 
 Chyba wszystkie frameworki do JavaScriptu posiadają swój tzw. ekosystem, czyli zbiór mniejszych bibliotek lub narzędzi, które wprowadzają jakaś funkcjonalność znaną na przykład z innych frameworków lub ułatwiają proces developmentu czy buildu. Nie inaczej jest z VueJS.
+
 Bardzo często w tym całym dodatkowym i niby-opcjonalnym gąszczu paczek npma można się zgubić i zamiast zacząć pisać będziemy instalować kolejne pluginy lub biblioteki, a w trakcie tego entuzjazm dotyczący nowego, wymyślonego przez nas projektu zdąży opaść.
 Skupie się na tych najbardziej sprawdzonych, w miarę "oficjalnych" i największych częściach ekosystemu, bez których stworzenie kompletnej web aplikacji jest albo utrudnione albo niemożliwe. Jeżeli nie tworzymy kolejnego Instagrama, to w zupełności wystarczy nam tylko najnowsza wersja Vue. Wszystkie pokazane tutaj części ekosystemu są opcjonalne. Nie będzie to tutorial uczący jak korzystać z danych bibliotek a bardziej przekrój przez te oferowane przez kontrybutorów frameworku.
 
@@ -19,7 +19,7 @@ Skupie się na tych najbardziej sprawdzonych, w miarę "oficjalnych" i najwięks
 
 W jaki sposób możemy zacząć używać Vue w naszych projektach? Mamy tutaj kilka opcji:
 
-- Załadować do tagu &lt;script&gt; adres CDNa, który dostarcza nam pożądaną przez nas wersję. Zalety i wady takiego sposobu zna chyba każdy, natomiast już na tym etapie możemy to zrobić dwojako:
+- Załadować do tagu <script> adres CDNa, który dostarcza nam pożądaną przez nas wersję. Zalety i wady takiego sposobu zna chyba każdy, natomiast już na tym etapie możemy to zrobić dwojako:
 - Używając pełnego builda produkcyjnego, który loguje nam do konsoli wszystkie błędy, ostrzeżenia, informacje i porady. Ta wersja pozwala na debugowanie naszej aplikacji we wtyczce przeglądarkowej Vue Dev Tools, o której mowa trochę niżej. [https://vuejs.org/js/vue.js](https://vuejs.org/js/vue.js)
 - Linkując zminifikowany plik .js o rozmiarach ~27kb gzipped, co jest rozmiarem porównywalnym do najnowszej wersji jQuery. Na produkcji nie chcemy raczej, aby użytkownik widział wszystkie informacje logowane do konsoli lub użyć Vue DevTools do debugowania jej wprowadzając jakieś niepożądane działania. https://vuejs.org/js/vue.min.js
 - Użyć NPMa i po wpisaniu npm install vue zacząć używać frameworka.
@@ -28,7 +28,7 @@ W jaki sposób możemy zacząć używać Vue w naszych projektach? Mamy tutaj ki
 O Vue CLI wspominałem już w innych postach. Jest to narzędzie działające w wierszu poleceń, które tak jak Yeoman służy do generowania struktury projektu. Wariantów również jest kilka, ale na sam początek polecam webpack-simple, czyli szkielet projektu ze skonfigurowanym webpackiem i vue-loaderem, co pozwala nam rozbić całą aplikację do single file components, a więc małych plików z roszerzeniem .vue, w których znajduje się:
 
 - Template, czyli struktura HTML komponentu
-- Logika komponentu między znacznikami &lt;script&gt;
+- Logika komponentu między znacznikami <script>
 - Styl napisany w dowolnym preprocesorze bądź czystym CSSie.
 
 Możemy też użyć konfiguracji dla browserify o nazwie browserify-simple, lub pełnej wersji zarówno dla webpacka i browserify, która zawiera w sobie moduły:
@@ -56,7 +56,7 @@ Repozytorium i dodatkowe informacje znajdują się pod tym linkiem
 
 Vuex to narzędzie do state managementu, czyli zarządzenia stanem naszej aplikacji inspirowane architekturą Flux i jej implementacją we frameworku React czyli Redux.
 Co to w ogóle jest zarządzanie stanem?
-Wyobraźmy sobie taką sytuację, że w naszej aplikacji posiadamy kilka różnych komponentów, które przyjmują jakieś dane, modyfikują je i wysyłają jakieś zdarzenia. O ile dane i zdarzenia są powiązane na zasadzie parent &lt;-&gt; child, czyli w jakimś dużym komponencie są inne, małe moduły to używanie do tego Vuexa/Reduxa mija sięz celem, ponieważ framework sam w sobie posiada mechanizm eventów i atrybutów/propsów przekazywanych na dół bądź w górę drzewa komponentów.
+Wyobraźmy sobie taką sytuację, że w naszej aplikacji posiadamy kilka różnych komponentów, które przyjmują jakieś dane, modyfikują je i wysyłają jakieś zdarzenia. O ile dane i zdarzenia są powiązane na zasadzie parent <-> child, czyli w jakimś dużym komponencie są inne, małe moduły to używanie do tego Vuexa/Reduxa mija sięz celem, ponieważ framework sam w sobie posiada mechanizm eventów i atrybutów/propsów przekazywanych na dół bądź w górę drzewa komponentów.
 Co jeżeli mamy kilkanaście komponentów, których stan/dane zależą od jakiegoś innego komponentu, który nie jest jego rodzicem bądź dzieckiem? Użycie state managementu jest jedynym sposobem na utrzymanie porządku w aplikacji, debugowanie jej w zależności od zdarzeń występujących w komponentach i śledzenie zmian w całej strukturze.
 Tworzymy wtedy coś co nazywa się store, przechowujący wszelkie dane z których korzystają różne od siebie komponenty.
 Taki store w Vuex posiada trzy najważniejsze moduły:
@@ -73,7 +73,7 @@ Wydawać się to może bardzo skomplikowane, ale jeżeli dojdziemy do sytuacji w
 
 Vuex powinniśmy używać jeżeli:
 
-- W naszej aplikacji istnieje częsta komunikacja między komponentami niepowiązanymi z sobą relacją rodzic &lt;-&gt; dziecko
+- W naszej aplikacji istnieje częsta komunikacja między komponentami niepowiązanymi z sobą relacją rodzic <-> dziecko
 - Jeżeli mnogość stanów zaczyna przeszkadzać nam w pracy
 
 **Dokumentacja**

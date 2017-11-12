@@ -1,6 +1,7 @@
 ---
 title: 'Wtyczka konkursowa: tworzenie folderu z zakładkami'
 id: 232
+layout: post
 categories:
   - dajsiepoznac2017
 date: 2017-04-14 12:37:05
@@ -20,14 +21,14 @@ Metoda, której szukałem to
 
 </pre>
 Byłem przekonany, że wystarczy wrzucić ją przed wywołaniem i podpięciem głównej instancji Vue wtyczki, w ten oto sposób
-<pre class="EnlighterJSRAW" data-enlighter-language="null">chrome.runtime.onInstalled.addListener((reason) =&gt; { ... });
+<pre class="EnlighterJSRAW" data-enlighter-language="null">chrome.runtime.onInstalled.addListener((reason) => { ... });
 
 import Vue from 'vue';
 import App from './App.vue';
 
 new Vue({
     el: '#container',
-    render: r =&gt; r(App)
+    render: r => r(App)
 });</pre>
 Niestety ten sposób nie działa, ponieważ zanim skrypt zostanie przetworzony event onInstalled dawno się odpali a listener nie uruchomi odpowiedniej funkcji.
 
@@ -43,15 +44,15 @@ Kilka stron na stackoverflow później dowiedziałem się, że we wtyczce może 
     "newtab": "./simple-speed-dial.html"
   }</pre>
 Debugowanie takiego pliku nie jest możliwe za pomocą starego dobrego console.log. Użyłem za tem jeszcze starszego i jeszcze lepszego alerta, który pokazuje czy funkcja handlera została odpalona.
-<pre class="EnlighterJSRAW" data-enlighter-language="js">chrome.runtime.onInstalled.addListener((reason) =&gt; {
+<pre class="EnlighterJSRAW" data-enlighter-language="js">chrome.runtime.onInstalled.addListener((reason) => {
     alert('installed!');
 });
 </pre>
 Chciałem tutaj użyć Promises API, ponieważ będę miał do czynienia z dwoma funkcjami wykonującymi się asynchronicznie - runtime.onInstalled i chrome.bookmarks.search().
 
 Niestety w przeszukiwaniu internetu wpadłem na 10 stron prezentujących przykładowe użycie obietnic, na których każdy sposób był inny od poprzedniego i następnego. Nie mogąc dojść do porozumienia z tą konstrukcją języka, postanowiłem tymczasowo oprzeć się na callbackach.
-<pre class="EnlighterJSRAW" data-enlighter-language="null">chrome.runtime.onInstalled.addListener((reason) =&gt; {
-    chrome.bookmarks.search('Simple Speed Dial', (bookmarks) =&gt; {
+<pre class="EnlighterJSRAW" data-enlighter-language="null">chrome.runtime.onInstalled.addListener((reason) => {
+    chrome.bookmarks.search('Simple Speed Dial', (bookmarks) => {
         if (bookmarks.length === 0)
             chrome.bookmarks.create({
                 'title' : 'Bookmarks from Simple Speed Dial extension'

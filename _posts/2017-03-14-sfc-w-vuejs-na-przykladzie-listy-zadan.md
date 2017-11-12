@@ -1,6 +1,7 @@
 ---
 title: Single File Components w VueJS na przykładzie listy zadań
 id: 154
+layout: post
 categories:
   - dajsiepoznac2017
   - vue
@@ -24,12 +25,12 @@ W mojej treningowej aplikacji dostępnej podlinkowanej na samym dole artykułu,�
 <pre class="EnlighterJSRAW" data-enlighter-language="null">var todo = {
   name: 'todo',
   props: ['name', 'text', 'id'],
-  template: `&lt;ul class="todo__element"&gt;
-              &lt;li class="todo__detail todo__name"&gt; {{ name }}&lt;/li&gt;
-              &lt;li class="todo__detail todo__text"&gt; {{ text }}&lt;/li&gt;
-              &lt;li class="todo__detail todo__action"&gt; 
-              &lt;button class="todo__delete" @click="completeTodo()"&gt;Complete&lt;/button&gt; &lt;/li&gt;
-              &lt;/ul&gt;`,
+  template: `<ul class="todo__element">
+              <li class="todo__detail todo__name"> {{ name }}</li>
+              <li class="todo__detail todo__text"> {{ text }}</li>
+              <li class="todo__detail todo__action"> 
+              <button class="todo__delete" @click="completeTodo()">Complete</button> </li>
+              </ul>`,
   methods : {
     completeTodo : function() {
       window.EventBus.$emit('todo_completed');
@@ -51,14 +52,14 @@ Template, czyli główny szkopuł. Doszło tutaj do sytuacji niemal wyjętej z R
 A co gdyby cały nasz komponent, czyli kod szablonu HTML, logika Vue i styl w Sassie znajdował się w jednym pliku z rozszerzeniem .vue?
 
 Na pomoc przychodzą Single File Components, dzięki czemu wszystko staje się trochę bardziej przyjazne dla developera.
-<pre class="EnlighterJSRAW" data-enlighter-language="html">&lt;template&gt;
-&lt;ul class="todo__element"&gt;
-              &lt;li class="todo__detail todo__name"&gt; {{ name }}&lt;/li&gt;
-              &lt;li class="todo__detail todo__text"&gt; {{ text }}&lt;/li&gt;
-              &lt;li class="todo__detail todo__action"&gt; &lt;button class="todo__delete" @click="completeTodo()"&gt;Complete&lt;/button&gt; &lt;/li&gt;
-              &lt;/ul&gt;
-&lt;/template&gt;
-&lt;script&gt;
+<pre class="EnlighterJSRAW" data-enlighter-language="html"><template>
+<ul class="todo__element">
+              <li class="todo__detail todo__name"> {{ name }}</li>
+              <li class="todo__detail todo__text"> {{ text }}</li>
+              <li class="todo__detail todo__action"> <button class="todo__delete" @click="completeTodo()">Complete</button> </li>
+              </ul>
+</template>
+<script>
 export default {
   name: 'todo',
   props: ['name', 'text', 'id'],
@@ -68,20 +69,20 @@ export default {
     }
   }
 }
-&lt;/script&gt;
-&lt;style lang="scss"&gt;
+</script>
+<style lang="scss">
 .todo {
-  &amp;__head {
+  &__head {
     display: flex;
     justify-content: space-between;
     list-style: none;
   }
-  &amp;__element {
+  &__element {
     @extends .todo__head;
   }
  ...
 
-&lt;/style&gt;</pre>
+</style></pre>
 Ale jak to tak, w jednym pliku i widok i logika? Nie o to PHPowcy walczyli!
 
 Cóż, takie dysputy polecam zainteresowanym internetowymi wojnami, ja po prostu zostanę przy takim sposobie pisania aplikacji.
@@ -89,13 +90,13 @@ Cóż, takie dysputy polecam zainteresowanym internetowymi wojnami, ja po prostu
 Czym taki zapis różni się od tego standardowego sposobu, prosto w pliku .js? Po pierwsze - nie przypisujemy całej instancji komponentu do zmiennej, ani nie wywołujemy konstruktora Vue() lub Vue.component(). Zamiast tego cała logika znajduje się w nawiasach exports default {}, czyli polecenia eksportującego nasz kod do modułu możliwego do zaimportowania w innym pliku .vue lub entry poincie aplikacji.
 
 Jeżeli chcemy skorzystać z istniejącego modułu, po prostu używamy "import". Tutaj przykład z nadrzędnego komponentu renderującego kolejne zadania z otrzymywanej przez atrybut 'todos' listy zadań
-<pre class="EnlighterJSRAW" data-enlighter-highlight="8">&lt;template&gt;
-  &lt;div class="todo__list"&gt;
-          &lt;todo v-for="singleTodo in todos" :name="singleTodo.name " :id="singleTodo.id" :text="singleTodo.text" &gt;&lt;/todo&gt;
-            &lt;/tr&gt;
-    &lt;/div&gt;
-&lt;/template&gt;
-&lt;script&gt;
+<pre class="EnlighterJSRAW" data-enlighter-highlight="8"><template>
+  <div class="todo__list">
+          <todo v-for="singleTodo in todos" :name="singleTodo.name " :id="singleTodo.id" :text="singleTodo.text" ></todo>
+            </tr>
+    </div>
+</template>
+<script>
 import todo from './todo.vue';
 export default {
   name: 'todo-list',
@@ -105,9 +106,9 @@ export default {
   }
 
 }
-&lt;/script&gt;
-&lt;style lang="scss"&gt;
-&lt;/style&gt;</pre>
+</script>
+<style lang="scss">
+</style></pre>
 Należy też pamiętać, że w VueJS tworząc nowy komponent (nawet jeśli nie używamy single file components) data musi być funkcją zwracającą obiekt z danymi, a nie po prostu obiektem. Przykład z głównego komponentu mojej listy todo, gdzie funkcja data zwraca defaultowe, przykładowe TODO, jeżeli użytkownik w localStorage przeglądarki nie posiada już wcześniej zapisanych zadań:
 <pre class="EnlighterJSRAW" data-enlighter-language="null">data: function() {
    return {
@@ -148,7 +149,7 @@ import App from './App.vue'
 window.EventBus = new Vue()
 new Vue({
   el: '#app-container',
-  render: h =&gt; h(App)
+  render: h => h(App)
 })
 </pre>
 &nbsp;

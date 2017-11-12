@@ -1,6 +1,7 @@
 ---
 title: 'Problem: Content Security Policy vs Vue.js'
 id: 215
+layout: post
 categories:
   - dajsiepoznac2017
 date: 2017-04-04 23:37:17
@@ -73,16 +74,16 @@ Co tu robi instrukcja .bind(this)? W środku callbacka odwołujemy się do danyc
 Dopiero po zastosowaniu .bind (lub też hacku w postaci var self = this) nasze dane będą widoczne dla warstwy widoku.
 
 HTML wygląda tak:
-<pre class="EnlighterJSRAW" data-enlighter-language="html">&lt;template&gt;
-    &lt;div class="grid"&gt;
-        &lt;ul class="bookmarks__list"&gt;
-            &lt;li v-for="bookmark in bookmarks" class="bookmarks__element"&gt;
-                &lt;h5&gt;{{ bookmark.title }}&lt;/h5&gt;
-                &lt;a v-bind:href="bookmark.url"&gt;{{ bookmark.url }}&lt;/a&gt;
-            &lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-&lt;/template&gt;</pre>
+<pre class="EnlighterJSRAW" data-enlighter-language="html"><template>
+    <div class="grid">
+        <ul class="bookmarks__list">
+            <li v-for="bookmark in bookmarks" class="bookmarks__element">
+                <h5>{{ bookmark.title }}</h5>
+                <a v-bind:href="bookmark.url">{{ bookmark.url }}</a>
+            </li>
+        </ul>
+    </div>
+</template></pre>
 Jest tu banalnie proste jednostronne bindowanie danych z tablicy zakładek, wypisywanie szczegółow oraz bindowanie atrybutu URL dla linku.
 
 Po zainstalowaniu wszystko wyświetla się tak:

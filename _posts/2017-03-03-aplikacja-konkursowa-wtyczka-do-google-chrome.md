@@ -1,6 +1,8 @@
 ---
 title: Aplikacja konkursowa - wtyczka do Google Chrome
 id: 80
+layout: post
+
 categories:
   - dajsiepoznac2017
 date: 2017-03-03 20:18:35

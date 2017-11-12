@@ -3,6 +3,7 @@ title: 'Wtyczka konkursowa: komponenty do zapisu i edycji zakładek.'
 tags:
   - Vue
 id: 264
+layout: post
 categories:
   - dajsiepoznac2017
 date: 2017-05-04 17:32:12
@@ -11,7 +12,7 @@ date: 2017-05-04 17:32:12
 Ostatnio zaimplementowałem funkcje tworzenia nowego folderu z zakładkami przy instalacji i zapisywania utworzonych zakładek do folderu wtyczki. Od tamtej pory poza funkcjonalnością wtyczki skupiłem się również na usprawnieniu procesu developmentu i buildu.
 
 Udało mi się prostym trikiem [ZOBACZ JAK] zejść z około 24 sekund (po dodaniu jedynie 3 komponentów!) buildu webpacka do 4 a także usprawnić ładowanie skompilowanego kodu do przeglądarki.
-<pre class="EnlighterJSRAW" data-enlighter-language="js">if (process.env.NODE_ENV === 'production') {
+{% highlight javascript %}if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
@@ -29,7 +30,7 @@ Udało mi się prostym trikiem [ZOBACZ JAK] zejść z około 24 sekund (po doda
     new webpack.LoaderOptionsPlugin({
       minimize: true
     })
-  ])</pre>
+  ]){% endhighlight %}
 Zakomentowana część to webpackowy plugin w webpack.config.json, który pożerał 20 sekund cennego czasu przy kompilowaniu komponentów do pliku build.js. Nie wiem jakie mechanizmy tam działają, ale po nazwie można domyślić się, że chodzi tutaj o minifikacje i podmiane wszystkich nazw zmiennych i funkcji do losowych znaków. Mając do przetworzenia wynikowy plik składający się z ponad 6000 linijek prawdopodobnie to było największym bottleneckiem w wydajności webpacka.
 
 Na dodatek przy którejś z rzędu kompilacji laptop odmówił posłuszeństwa a na jego ekranie pokazał się BSOD z kodem błędu "unknown store mode". Jakby tego było mało po restarcie ukazał się monit z BIOSu informujący o braku bootowalnych dysków w komputerze. Już powoli żegnałem się z moim poczciwym Lenovo, ale po kolejnym restarcie wszystko wróciło do normy. Prawdopodobnie dysk był pod zbyt dużym obciążeniem i ześwirował, bo w międzyczasie oglądałem odcinek Astrofazy i pobierałem FIFA 17 z Origin Access. W sieci brak informacji o webpacku powodującym bluescreena, tak więc szansa na to, że to JavaScript był powodem awarii komputera jest dosyć znikoma.
@@ -61,19 +62,19 @@ Cztery obecne komponenty to:
 3.  NewBookmarkModal.vue odpowiedzialny za dodawanie nowej zakładki, poprawienie URLa w razie jego złego wpisania i zapisanie bookmarka do pamięci Chrome.
 4.  Store, czyli obiekt emulujący state management.
 Po kolei.
-<pre class="EnlighterJSRAW" data-enlighter-language="html">&lt;div class="extension__wrapper"&gt;
-            &lt;new-bookmark-modal&gt;&lt;/new-bookmark-modal&gt;
-            &lt;edit-bookmark-modal&gt;&lt;/edit-bookmark-modal&gt;
-            &lt;ul class="extension__bookmarks"&gt;
-                &lt;li v-for="editedBookmark in extensionBookmarks" class="extension__bookmark"&gt;
-                    &lt;p&gt; {{ editedBookmark.title }} &lt;/p&gt;
-                    &lt;a :href="editedBookmark.url"&gt; {{ editedBookmark.url }}&lt;/a&gt;
-                    &lt;button @click="openEditModal(editedBookmark)"&gt; Edit &lt;/button&gt;
-                    &lt;button @click="deleteBookmark(editedBookmark)"&gt; DELETE &lt;/button&gt;
-                &lt;/li&gt;
-            &lt;/ul&gt;
-            &lt;button class="button button--primary" @click="openNewBookmarkModal"&gt; Add new bookmark&lt;/button&gt;
-        &lt;/div&gt;</pre>
+{% highlight html%}  <div class="extension__wrapper">
+            <new-bookmark-modal></new-bookmark-modal>
+            <edit-bookmark-modal></edit-bookmark-modal>
+            <ul class="extension__bookmarks">
+                <li v-for="editedBookmark in extensionBookmarks" class="extension__bookmark">
+                    <p> {{ editedBookmark.title }} </p>
+                    <a :href="editedBookmark.url"> {{ editedBookmark.url }}</a>
+                    <button @click="openEditModal(editedBookmark)"> Edit </button>
+                    <button @click="deleteBookmark(editedBookmark)"> DELETE </button>
+                </li>
+            </ul>
+            <button class="button button--primary" @click="openNewBookmarkModal"> Add new bookmark</button>
+        </div>{% endhighlight %}
 **Struktura i nazewnictwo klas i elementów jest na razie tymczasowe i zostanie zmienione na coś z większym sensem.**
 
 Zaraz w środku wrappera znajdują się wspomniane wyżej komponenty. Tutaj ukazuje się siła i wygoda Vue, gdzie podobnie jak w Angularze możemy utworzyć swój własny markup HTML reprezentujący komponenty aplikacji.
@@ -91,23 +92,23 @@ Następnym elementem jest prosta lista renderująca dane modelu pobierane na poc
 
 4.  Otwieranie okna dodawania nowej zakładki.
 Zastosowałem state management w postaci instancji Vue podpiętej do obiektu window:
-<pre class="EnlighterJSRAW" data-enlighter-language="js">import Vue from 'vue';
-export default window.Store = new Vue();</pre>
+{% highlight javascript %}import Vue from 'vue';
+export default window.Store = new Vue();{% endhighlight %}
 Rozwiązanie póki co spełnia swoje założenia, więc podpięcie Vuex jest na dzień dzisiejszy zbędnym obciążeniem dla wtyczki.
 
 &nbsp;
-<pre class="EnlighterJSRAW" data-enlighter-language="js">openEditModal(bookmark) {
+{% highlight javascript %}openEditModal(bookmark) {
             Store.$emit('openEditModal', bookmark);
-        },</pre>
+        },{% endhighlight %}
 Po co tutaj state management?
 
 Jeżeli w głównym komponencie Vue wciskam przycisk Edit, w tym momencie do globalnego Store przesyłany jest event "openEditModal" z danymi obecnie edytowanej zakładki po to, aby komponent EditBookmarkModal mógł przechwycić i wyświetlić obecnej zakładki w inputach. Można zastosować również mechanizm propsów i przekazać tą zakładkę jako atrybut, ale według mnie znacznie wygodniejszą i czytelniejszą metodą jest użycie jakiegoś state managementu.
 
 Chromie nie zapisuje poprawnie adresów zakładek bez przedrostka http:// lub https://, o czym przekonałem się dopiero w trakcie testowania wtyczki.
-<pre class="EnlighterJSRAW" data-enlighter-language="js">getValidUrl(url) {
-              if (url.indexOf('http://') &lt; 0 &amp;&amp; url.indexOf('https://') &lt; 0) {
+{% highlight javascript %}getValidUrl(url) {
+              if (url.indexOf('http://') < 0 && url.indexOf('https://') < 0) {
                   url = 'http://' + url;
-              }  return url;</pre>
+              }  return url;{% endhighlight %}
 Ta prosta metoda dokleja standardowy przedrostek. Muszę dopisać jeszcze pełnoprawną walidację wpisywanych danych, aby nic się nie popsuło.
 
 Następnym etapem będzie dopracowanie komponentu edytującego zakładki a także strona wizualna, bo póki co nie wygląda to wcale/

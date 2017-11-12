@@ -1,6 +1,7 @@
 ---
 title: 'Wtyczka konkursowa: dodatkowe funkcje'
 id: 280
+layout: post
 categories:
   - dajsiepoznac2017
 date: 2017-05-31 12:08:00
@@ -14,29 +15,31 @@ We wtyczce na dzień dzisiejszy brakuje kilku najważniejszych funkcji związany
 Białe tło za kafelkami speed diala nie wyglądają zbyt zachęcająco, dlatego też w każdej wtyczce podobnej to tej tworzonej przeze mnie natknąłem się na opcje dodawania własnego tła. Do tej pory rozwiązywałem to w zły sposób.
 
 Komponent BackgroundConfig zapisywał obrazek w chrome.storage.local a następnie emitował event do globalnego Store informujący główny komponent App o zmianie obrazka.
-<pre class="EnlighterJSRAW" data-enlighter-language="js">saveBackgroundUrl() {
-                let backgroundImageUrl = this.backgroundImageUrl;
-                chrome.storage.local.set({
-                    backgroundImageUrl
-                });
-                Store.$emit('newBackgroundImageUrl', this.backgroundImageUrl);
-                this.closeBackgroundConfigModal()
-            }</pre>
-&nbsp;
+{% highlight javascript %}
+saveBackgroundUrl() {
+    let backgroundImageUrl = this.backgroundImageUrl;
+    chrome.storage.local.set({
+        backgroundImageUrl
+    });
+    Store.$emit('newBackgroundImageUrl', this.backgroundImageUrl);
+    this.closeBackgroundConfigModal()
+}
+{% endhighlight %}
 
 Ten z kolei pobierał z chrome.storage.local adres zapisanego tła dynamicznie bindował styl do głównego kontenera wtyczki.
-<pre class="EnlighterJSRAW" data-enlighter-language="js">fetchBackgroundImageFromStorage: function () {
+{% highlight javascript %}fetchBackgroundImageFromStorage: function () {
                let self = this;
-               chrome.storage.local.get('backgroundImageUrl', (backgroundImageUrl) =&gt; {
+               chrome.storage.local.get('backgroundImageUrl', (backgroundImageUrl) => {
                    self.bgImageUrl = backgroundImageUrl.backgroundImageUrl || '';
                })
-           },</pre>
+           },{% endhighlight %}>
 &nbsp;
 
 Wszystko działało w porządku dopóki nie dodawałem bardzo dużego obrazka - wtedy przy otwieraniu nowej karty pojawiał się lag wstrzymujący renderowanie się zakładek dopóki tło nie zostanie załadowane.
 
 Jaka jest alternatywa dla takiego rozwiązania? Zamiast zapisywać tylko adres obrazka, zapiszę go w całości w pamięci podręcznej wtyczki.
-<pre class="EnlighterJSRAW" data-enlighter-language="null">convertToBase64(image) {
+{% highlight javascript %}
+convertToBase64(image) {
              let canvas = document.createElement('canvas');
              canvas.width = image.width;
              canvas.height = image.height;
@@ -56,12 +59,12 @@ saveBackgroundUrl() {
                Store.$emit('newBackgroundImageUrl', this.backgroundImageUrl);
                this.closeBackgroundConfigModal()
            }
-       }</pre>
+       }{% endhighlight %}
 Stworzyłem okno z podglądem obrazka, z którego wyciągam element DOM przesyłany do funkcji konwertującej tło do Base64\. Tam tworzony jest element canvas, na którym "malowane" jest zdjęcie. Ostatnim etapem jest wywołanie toDataURL na obiekcie context canvasa.
 
 Niestety po próbie zapisania tego do pamięci Chrome zwraca błąd
 
-`<span class="typ">Failed</span><span class="pln"> to execute </span><span class="str">'toDataURL'</span><span class="pln"> on </span><span class="str">'CanvasRenderingContext2D'</span><span class="pun">:</span> <span class="typ">The</span><span class="pln"> canvas has been tainted </span><span class="kwd">by</span><span class="pln"> cross</span><span class="pun">-</span><span class="pln">origin data</span><span class="pun">.</span>`
+`The canvas has been tainted by cross origin data`
 
 &nbsp;
 
@@ -69,7 +72,7 @@ Spowodowane jest to pobraniem obrazka z zewnętrznej domeny.
 
 Stack overflow podsunął rozwiązanie tego problemu poprzez dodanie atrybutu
 
-`<span class="pln">img.crossOrigin </span><span class="pun">=</span> <span class="str">'anonymous'</span>`
+`img.crossOrigin = 'anonymous`
 
 ale również i to nie działa jak należy.
 
@@ -85,10 +88,10 @@ Oprócz tła nowego okna każda z zakładek ma przyporządkowany swój własny k
 
 Edycja kolorów jest w planach na kolejny release - w tym momencie wole skupić się na najważniejszych rzeczach.
 
-#### Drag &amp; Drop
+#### Drag & Drop
 
 Drag and drop to coś co chciałbym zaimplementować w rozszerzeniu, najlepiej korzystając tylko i wyłącznie z czystego natywnego API a nie z bibliotek, które mogłyby niepotrzebnie spowolnić i zwiększyć już tak duży rozmiar rozszerzenia.
 
 Dzisiaj kończy się konkurs Daj Sie Poznać, tak więc wszelkie updaty będą już poza-konkursowe. Polecam śledzić bloga i mój profil na githubie, jeżeli jesteś zainteresowany dalszym rozwojem wtyczki lub będziesz chciał zostać beta-testerem.
 
-http://github.com/svantetic
+[https://github.com/svantetic](https://github.com/svantetic)

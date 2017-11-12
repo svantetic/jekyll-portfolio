@@ -1,6 +1,7 @@
 ---
 title: 'Aplikacja konkursowa: wstępny design'
 id: 135
+layout: post
 categories:
   - dajsiepoznac2017
 date: 2017-03-09 20:19:30
