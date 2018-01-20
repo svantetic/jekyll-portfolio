@@ -1,5 +1,14 @@
 - branch: javascript
   projects:
+  - name: angular pm
+    description: project management software written in Angular 5 and Graphcool framework
+    tags:
+      - angular
+      - learning
+      - graphql
+      - graphcool
+    image:
+    url: https://svantetic.github.io/angular-pm
   - name: react simple speed dial
     description: chrome extension written in react
     tags:

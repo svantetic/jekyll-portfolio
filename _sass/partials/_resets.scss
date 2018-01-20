@@ -22,3 +22,11 @@ strong {
 a {
 	color: $main-color;
 }
+
+pre {
+	background-color: inherit;
+}
+
+pre code {
+	color: #eee;
+}
