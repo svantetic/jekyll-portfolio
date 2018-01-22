@@ -18,8 +18,10 @@ skills:
         commercial: true
       - name: react / redux
       - name: react-native
-      - name: laravel
+      - name: angular 5
+      - name: typescript
       - name: node / express
+      - name: laravel
       - name: jquery
         commercial: true
   - category: other
