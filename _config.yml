@@ -18,7 +18,7 @@ email: arkadiusm@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Arkadiusz Mierzwa - front end dev portfolio & blog
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://arkadiuszm.pl/" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: arkadiusm
 github_username:  svantetic
 default_locale: "pl"

@@ -22,7 +22,7 @@
         {% else %}
           {{ site.description }}
         {% endif %}">
-  
+  {% feed_meta %}
   <meta name="og:type" content="website" />
   <meta name="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
   <meta name="twitter:site" content="@chronotope" />
